@@ -1,0 +1,56 @@
+---
+title: L. K. | Projects
+route: projects
+---
+{% extends "layouts/_layout.html" %}
+{% block content %}
+
+<main>
+  <section class="section indent-top indent-bottom">
+    <div class="container heading-container">
+      <h2>My Projects</h2>
+      <div class="heading-line"></div>
+    </div>
+    <div class="container section__container">
+      <div class="cases" style="opacity: 0;">
+        <div class="cases--left">
+          <div class="case case--second">
+            <img class="js-webgl-image cursor-active" src="img/cases/bali.jpg" alt="case">
+            <div class="case-text">
+              <span class="case-num">01</span>
+              <h4>bali</h4>
+            </div>
+          </div>
+        </div>
+        <div class="cases--right">
+          <div class="case case--first">
+            <img class="js-webgl-image cursor-active" src="img/cases/tek.jpg" alt="case">
+            <div class="case-text">
+              <span class="case-num">02</span>
+              <h4>tek</h4>
+            </div>
+          </div>
+          <div class="cases__wrap">
+            <div class="case case--third">
+              <img class="js-webgl-image cursor-active" src="img/cases/bulbakh.jpg" alt="case">
+              <div class="case-text">
+                <span class="case-num">03</span>
+                <h4>bulbakh</h4>
+              </div>
+            </div>
+            <div class="case case--fourth">
+              <img class="js-webgl-image cursor-active" src="img/cases/iqos.jpg" alt="case">
+              <div class="case-text">
+                <span class="case-num">04</span>
+                <h4>iqos</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+{% include './partials/_footer.html' %}
+<canvas id="app" touch-action="none" style="opacity: 0;"></canvas>
+{% endblock %}

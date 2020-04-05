@@ -23,7 +23,7 @@ export default class ParallaxScroller {
         (i + 1) % 2 === 0 ?
           this.layer[i].style.transform = `matrix3d(1,0,0.00,0,0.00,1,0.00,0,0,0,1,0,-${this.newPixel*0.011*this.speed[i]},0,0,1)` :
           this.layer[i].style.transform = `matrix3d(1,0,0.00,0,0.00,1,0.00,0,0,0,1,0,${this.newPixel*0.025*this.speed[i]},0,0,1)`
-          
+
       }
     }
 

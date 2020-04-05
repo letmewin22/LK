@@ -18,3 +18,16 @@ export const splitLines = (selector) => {
   }
   return result()
 }
+
+export const navLinksDetect = () => {
+  const navLinks = document.querySelectorAll('nav a')
+
+  for (const link of navLinks) {
+
+    link.classList.remove('active')
+
+    if (link.href === location.href) {
+      link.classList.add('active')
+    }
+  }
+}

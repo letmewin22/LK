@@ -8,13 +8,24 @@ import mainLoader from '../loaders/mainLoader.js'
 import MousemoveParallax from '../ui/MousemoveParallax'
 import Distort from '../Distort'
 import CustomCursor from '../ui/CustomCursor'
+import RepeatedText from '../RepeatedText'
 
 
 
 class CustomRendererMain extends Highway.Renderer {
 
   onEnterCompleted() {
-    
+
+    const textRepeat = new RepeatedText({
+      lineTop: document.querySelector('.repeated-text--top'),
+      lineBottom: document.querySelector('.repeated-text--bottom'),
+      time: 15
+    })
+
+
+
+    textRepeat.twoLines()
+
     window.addEventListener('load', () => {
       defaultLoader(mainLoader)
     })

@@ -38,8 +38,8 @@ class ScrollAnimations extends ScrollInView {
       .to(elem.querySelectorAll('.button'), 1, { opacity: 1, ease: Power1.easeInOut }, 0.2)
       .to(elem.querySelectorAll('.contact-me'), 1, { opacity: 1, ease: Power1.easeInOut }, 0.4)
       .staggerTo(elem.querySelectorAll('.contacts-line'), 0.8, { width: '100%', ease: Power1.easeInOut }, 0.3, 0.2)
-      .staggerTo([elem.querySelectorAll('.contacts a')[0], elem.querySelectorAll('.contacts a')[1], elem.querySelectorAll('.contacts a')[2]], 0.8, { opacity: 1, y: 0, ease: Power2.easeOut }, 0.3, 0.1)
-      .staggerTo([elem.querySelectorAll('.contacts a')[3], elem.querySelectorAll('.contacts a')[4], elem.querySelectorAll('.contacts a')[5]], 0.8, { opacity: 1, y: 0, ease: Power2.easeOut }, 0.3, 0.1)
+      .staggerTo([elem.querySelectorAll('.contacts .footer-animate')[0], elem.querySelectorAll('.contacts .footer-animate')[1], elem.querySelectorAll('.contacts .footer-animate')[2]], 0.8, { opacity: 1, y: 0, ease: Power2.easeOut }, 0.3, 0.1)
+      .staggerTo([elem.querySelectorAll('.contacts .footer-animate')[3], elem.querySelectorAll('.contacts .footer-animate')[4], elem.querySelectorAll('.contacts .footer-animate')[5]], 0.8, { opacity: 1, y: 0, ease: Power2.easeOut }, 0.3, 0.1)
   }
 
   static aboutTextLines(elem) {

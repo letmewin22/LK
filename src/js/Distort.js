@@ -21,11 +21,12 @@ export default class Distort {
     this.planesImg = new Array(this.images.length)
     this.planesImgBounds = new Array(this.images.length)
 
-
     this.fisheyePP = null
     this.fisheyeDistortion = { value: 0 }
 
     this.debug = false
+
+    
 
   }
 

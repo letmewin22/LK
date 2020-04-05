@@ -56,5 +56,12 @@ button
 			transition: stroke-dashoffset 1s cubic-bezier(0.455, 0.03, 0.515, 0.955)
 			&.stroked
 				stroke-dashoffset: 0px !important
+
 	a
 		position: relative
+.stroke-link
+	cursor: pointer
+	&.active
+		+ svg
+			path
+				stroke-dashoffset: 0px !important

@@ -15,10 +15,10 @@ export default class ScrollInView {
   inView() {
 
     this.elements.forEach(elem => {
-
+      
       let elemTop = elem.getBoundingClientRect().top
 
-      if (elemTop <= window.innerHeight * this.intersectionRatio && elemTop > 0) {
+      if (elemTop <= window.innerHeight * this.intersectionRatio && elemTop > 0 && window.pageYOffset > 0) {
         if (!elem.classList.contains('activated')) {
 
           elem.classList.add('activated')

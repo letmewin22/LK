@@ -17,6 +17,10 @@
 		display: none 
 	.navbar nav ul li
 		font-size: 16px
+	header h1 .h1-decor::after
+		height: 3px
+	header h1 .h1-decor
+		-webkit-text-stroke-width: 0.5px
 
 @media (max-width: 768px)
 	header h1
@@ -27,8 +31,6 @@
 		bottom: 6.4vw
 	footer .contact-me
 		display: none
-	header h1 .h1-decor::after
-		height: 3px
 	.navbar
 		top: 35px
 		nav
@@ -41,6 +43,7 @@
 			color: $dark-color
 			display: none
 			z-index: 10
+			border-radius: 50%
 			a
 				color: transparent
 				font-size: 40px
@@ -90,8 +93,7 @@
 		h4
 			font-size: 30px
 	.social
-		opacity: 0
-		pointer-events: none
+		display: none
 		color: $dark-color
 		z-index: 101
 	.social .social-link
@@ -163,6 +165,38 @@
 		position: absolute
 		left: 20px
 		z-index: 100
+	.about-h1
+		font-size: 4.5vw
+		margin-bottom: 6.4vh
+		&__second-line
+			display: inline-block
+			margin-left: 0px
+	.repeated-text__line
+		margin-top: 35px
+		&:first-child
+			margin-bottom: 35px
+	.award__content
+		font-size: 18px
+	.awards-wrapper
+		width: 90vw
+	.award__name
+		width: 37.9vw
+	.about-text
+		font-size: 30px
+	.content-wrapper
+		flex-direction: column
+		&__left
+			width: 100%
+			height: 70vh
+			img
+				width: 100%
+				height: 100%
+				object-fit: cover
+				object-position: top
+		&__right
+			width: 100%
+			margin-left: 0px
+			margin-top: 50px
 
 
 
@@ -186,6 +220,30 @@
 		padding-right: 20px
 	.stroke-a svg
 		display: none
+	.content-wrapper__left
+		height: fit-content
+		img
+			width: 100%
+			height: unset
+			object-fit: unset
+			object-position: center
+	.about-h1
+		font-size: 24px
+	.content-wrapper
+		margin-top: 47px
+	.awards-wrapper
+		margin-top: 47px
+	.award__name
+		width: 47.9vw
+	.award__logo
+		width: 10.3%
+	.about-h1 
+		span
+			display: inline
+		.h1-decor
+			display: inline-block
+
+
 
 @media (max-width: 362px)
 	header h1

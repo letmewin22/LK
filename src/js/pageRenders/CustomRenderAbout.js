@@ -14,6 +14,15 @@ class CustomRendererAbout extends Highway.Renderer {
 
   onEnterCompleted() {
 
+    const textRepeat0 = new RepeatedText({
+      lineTop: document.querySelector('.repeated-text--top'),
+      lineBottom: document.querySelector('.repeated-text--bottom'),
+      time: 15
+    })
+
+
+
+    textRepeat0.twoLines()
 
     new MousemoveParallax({
       img: document.querySelector('.header-container__emotion'),
@@ -38,29 +47,29 @@ class CustomRendererAbout extends Highway.Renderer {
 
     }
 
-    // if (screen.width > 1024) {
-    //   const app = new Distort({ images: [...document.querySelectorAll('.js-webgl-image')] })
+    if (screen.width > 1024) {
+      const app = new Distort({ images: [...document.querySelectorAll('.js-webgl-image')] })
 
-    //   imagesLoaded('.cases', () => {
+      imagesLoaded('.cases', () => {
 
-    //     app.init()
+        app.init()
 
-    //     const updateValues = ({ size, scroll }) => {
-    //       if (size.changed) {
-    //         app.engine.resize()
-    //         app.setElementsBounds()
-    //         app.setElementsStyle()
-    //         app.setElementsPosition()
-    //       }
+        const updateValues = ({ size, scroll }) => {
+          if (size.changed) {
+            app.engine.resize()
+            app.setElementsBounds()
+            app.setElementsStyle()
+            app.setElementsPosition()
+          }
 
-    //       if (scroll.changed) {
-    //         app.animateFisheye({ value: scroll.velocity.y })
-    //         app.setElementsPosition()
-    //       }
-    //     }
-    //     tornis.watchViewport(updateValues)
-    //   })
-    // }
+          if (scroll.changed) {
+            app.animateFisheye({ value: scroll.velocity.y })
+            app.setElementsPosition()
+          }
+        }
+        tornis.watchViewport(updateValues)
+      })
+    }
   }
 }
 // Don`t forget to export your renderer
