@@ -1,0 +1,102 @@
+---
+title: Index page
+route: main
+repeatedTextTop:
+- HTML5
+- Css3
+- JavaScript
+- Gulp
+- Webpack
+repeatedTextBottom:
+- Wordpress
+- webgl
+- React
+- Vue
+---
+{% extends "layouts/_layout.html" %}
+{% block content %}
+<header>
+  <div class="container header-container">
+    <div class="header-container__my-photo"></div>
+    <h1>
+      <span class="h1-decor h1-line"><a href="./about.html">Leonid Kostetckyi</a></span>
+      <span class="website h1-line">Website</span>
+      <span class="development h1-line">development</span>
+      <span class="for-business h1-line">for business</span>
+    </h1>
+    <button class="button header-button">Contact me <span class="button-rewealer" style="transform: translate(-50%, -50%) scale(0)">
+        <span class="button-text">Contact me</span>
+      </span>
+    </button>
+    <div class="social">
+      <div class="stroke-a social-link"> <a class="stroke-link" data-width="30" data-height="10" href="./">
+          facebook
+        </a>
+        {% include "partials/_stroke.html" %}
+
+      </div>
+      <div class="stroke-a social-link"> <a class="stroke-link" data-width="30" data-height="10" href="./">
+          instagram
+        </a>
+        {% include "partials/_stroke.html" %}
+      </div>
+      <div class="stroke-a social-link"> <a class="stroke-link" data-width="30" data-height="10" href="./">
+          behance
+        </a>
+        {% include "partials/_stroke.html" %}
+      </div>
+    </div>
+  </div>
+</header>
+<main>
+  <section class="section indent-top indent-bottom">
+    <div class="container heading-container">
+      <h2>My Projects</h2>
+      <div class="heading-line"></div>
+    </div>
+    <div class="container section__container">
+      <div class="cases">
+        <div class="cases--left">
+          <div class="case case--second">
+            <img class="js-webgl-image cursor-active" src="img/cases/bali.jpg" alt="case">
+            <div class="case-text">
+              <span class="case-num">01</span>
+              <h4>bali</h4>
+            </div>
+          </div>
+        </div>
+        <div class="cases--right">
+          <div class="case case--first">
+            <img class="js-webgl-image cursor-active" src="img/cases/tek.jpg" alt="case">
+            <div class="case-text">
+              <span class="case-num">02</span>
+              <h4>tek</h4>
+            </div>
+          </div>
+          <div class="cases__wrap">
+            <div class="case case--third">
+              <img class="js-webgl-image cursor-active" src="img/cases/bulbakh.jpg" alt="case">
+              <div class="case-text">
+                <span class="case-num">03</span>
+                <h4>bulbakh</h4>
+              </div>
+            </div>
+            <div class="case case--fourth">
+              <img class="js-webgl-image cursor-active" src="img/cases/iqos.jpg" alt="case">
+              <div class="case-text">
+                <span class="case-num">04</span>
+                <h4>iqos</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="section indent-bottom">
+    {% include './partials/_repeated-text.html' %}
+  </div>
+</main>
+{% include './partials/_footer.html' %}
+<canvas id="app" touch-action="none"></canvas>
+{% endblock %}

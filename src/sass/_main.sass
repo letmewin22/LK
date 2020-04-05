@@ -1,0 +1,168 @@
+*
+	::selection
+		background: $accent-color
+		// color: white
+.custom 
+  scrollbar-width: none 
+  -ms-overflow-style: none 
+  &::-webkit-scrollbar 
+    width: 0px 
+    background: transparent 
+
+body
+	background: $main-color
+	color: white
+	+main
+	opacity: 0
+	pointer-events: none
+	overflow: hidden
+
+.social
+	position: absolute
+	bottom: 4%
+	left: 0
+	.social-link
+		font-size: 16px
+		color: rgba(#fff, 0.8)
+		margin-left: 63px
+		display: inline-block
+		+main
+
+.heading-line
+	width: 0%
+	margin-top: 13px
+	height: 3px
+	background: white
+
+.cases
+	margin-top: 117px
+	width: 100%
+	display: flex
+	// justify-content: space-between
+	&__wrap
+		display: flex
+		margin-top: 90px
+		justify-content: space-between
+	&--left
+		margin-right: 8.125vw
+
+.case
+	width: fit-content
+	img
+		max-width: 100%
+		display: block
+	h4
+		text-transform: uppercase
+		font-size: 1.6vw
+		+medium
+		line-height: 1em
+	.case-num
+		display: inline-block
+		font-size: 12px
+		opacity: 0.7
+		margin-right: 8px
+	.case-text
+		display: flex
+		margin-top: 25px
+		width: fit-content
+		line-height: 1em
+	&--second
+		margin-top: 28.4vh
+	&--fourth
+		margin-top: 29vh
+		margin-left: 8.125vw
+
+.repeated-text
+	font-size: 4.7vw
+	width: 100%
+	overflow: hidden
+	text-transform: uppercase
+	white-space: nowrap
+	will-change: transform
+	&--top, &--about
+		display: inline-flex
+		justify-content: space-between
+		will-change: transform
+	&--bottom
+		display: flex
+		justify-content: space-between
+		float: right
+		will-change: transform
+	.repeated-content
+		margin-right: 9.2vw
+		&.stroked
+			+GTFBold
+			color: transparent
+			-webkit-text-stroke-width: 1px
+			-webkit-text-stroke-color: white
+	&__line
+		background: white
+		width: 100%
+		height: 4px
+		margin-top: 5.8vh
+		margin-bottom: 0px
+		transform: scaleX(0)
+		&:first-child
+			margin-bottom: 5.8vh
+			margin-top: 0px
+
+.header-container__my-photo
+	position: absolute
+	top: 0
+	left: 0
+	opacity: 0
+	width: 568px
+	height: 800px
+	margin-left: -274px
+	margin-top: -200px
+	background-image: url(../img/i.jpg)
+	background-size: cover
+	background-repeat: no-repeat 
+	z-index: -1
+	background-position: 50% 50%
+
+.header-container__emotion
+	position: absolute
+	top: 0
+	left: 0
+	opacity: 0
+	width: 640px
+	height: 323px
+	margin-left: -320px
+	margin-top: -161.5px
+	background-image: url(../img/emotion.jpg) 
+	background-size: cover
+	z-index: -1
+	background-position: 50% 50%
+	background-repeat: no-repeat 
+
+.cursor
+	pointer-events: none
+	width: 150px
+	height: 150px
+	background: white
+	border-radius: 50%
+	display: flex
+	justify-content: center
+	align-items: center
+	text-align: center
+	line-height: 1em
+	color: $dark-color
+	font-size: 18px
+	position: fixed
+	top: 0
+	left: 0
+	transform: scale(0)
+	z-index: 100
+	margin-left: -75px
+	margin-top: -75px
+
+.burger
+	display: none
+
+.cursor-active
+	&:hover 
+		cursor: none
+
+.h1-line
+	will-change: transform 

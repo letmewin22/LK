@@ -1,0 +1,106 @@
+---
+title: Index page
+route: about
+repeatedTextTop:
+- HTML5
+- Css3
+- JavaScript
+- Gulp
+- Webpack
+repeatedTextBottom:
+- Wordpress
+- webgl
+- React
+- Vue
+---
+{% extends "layouts/_layout.html" %}
+{% block content %}
+<header>
+  <div class="container header-container">
+    <div class="header-container__emotion"></div>
+    <h1 class="about-h1">
+      <span class="about-h1__first-line h1-line">I’m a head of web design and </span>
+      <span class="about-h1__second-line h1-line">front-end developer in a creative</span>
+      <span class="about-h1__third-line h1-line">design agency <span class="h1-decor"><a href="https://emotion-agency.com/" target="_blank">emotiON</a></span></span>
+    </h1>
+  </div>
+  <div class="repeated-text header__repeated-text">
+    <div class="repeated-text__line"></div>
+    <div class="repeated-text--about">
+      <div class="repeated-content stroked">I create sites and applications that cause pleasant emotions</div>
+      <div class="repeated-content stroked">I create sites and applications that cause pleasant emotions</div>
+    </div>
+    <div class="repeated-text__line"></div>
+  </div>
+</header>
+<main>
+  <section class="section indent-top indent-bottom">
+    <div class="container heading-container">
+      <h2>Specialization</h2>
+      <div class="heading-line"></div>
+    </div>
+    <div class="container section__container">
+      <div class="content-wrapper">
+        <div class="content-wrapper__left">
+          <img class="js-webgl-image" src="img/about.jpg" alt="Leonid Kostetckyi">
+        </div>
+        <div class="content-wrapper__right">
+          <div class="about-text">
+            <p>I Specialize in Interaction Design and Experience Websites.</p>
+            <p>I create websites, web and mobile applications.</p>
+            <p>I complete the task comprehensively. As a result, you get a finished product.</p>
+            <p>Each my site is fast and user friendly.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="section">
+    {% include './partials/_repeated-text.html' %}
+  </div>
+  <section class="section indent-top indent-bottom">
+    <div class="container heading-container">
+      <h2>Awards</h2>
+      <div class="heading-line"></div>
+    </div>
+    <div class="container section__container awards-container">
+      <div class="awards-wrapper">
+        <div class="award">
+          <div class="award__line"></div>
+          <div class="award__content">
+            <div class="award__logo animating">
+              <img src="img/awards-logos/awwards.svg" alt="award-logo">
+            </div>
+            <div class="award__name animating">mobile excellence</div>
+            <div class="award__amount animating">x1</div>
+          </div>
+        </div>
+        <div class="award">
+          <div class="award__line"></div>
+          <div class="award__content">
+            <div class="award__logo animating">
+              <img src="img/awards-logos/awwards.svg" alt="award-logo">
+            </div>
+            <div class="award__name animating">honorable</div>
+            <div class="award__amount animating">x1</div>
+          </div>
+        </div>
+        <div class="award">
+          <div class="award__line"></div>
+          <div class="award__content">
+            <div class="award__logo animating">
+              <img src="img/awards-logos/cssawards.svg" alt="award-logo">
+            </div>
+            <div class="award__name animating">Featured</div>
+            <div class="award__amount animating">x1</div>
+          </div>
+          <div class="award__line"></div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+</main>
+{% include './partials/_footer.html' %}
+<canvas id="app" touch-action="none"></canvas>
+{% endblock %}

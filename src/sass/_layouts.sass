@@ -1,0 +1,74 @@
+header
+	width: 100%
+	height: 100vh
+	position: relative
+	overflow: hidden
+
+.container
+	width: 100%
+	height: 100%
+	padding-left: 4vw
+	padding-right: 6.8vw
+	&.header-container
+		display: flex
+		align-items: center
+		justify-content: space-between
+		position: relative
+	&.heading-container
+		padding-left: 4vw
+		padding-right: 0px
+	&.awards-container
+		padding-right: 0px
+		display: inline-block
+
+.indent-top
+	padding-top: 20.3vh
+
+.indent-bottom
+	padding-bottom: 20.3vh
+
+
+
+footer
+	.container
+		display: flex
+	.footer-left
+		margin-right: 11vw
+		width: 25%
+	.footer-right
+		width: 75%
+	.button
+		margin-top: 23.2vh
+		opacity: 0
+	.contact-me
+		line-height: 1em
+		font-size: 1.2vw
+		opacity: 0
+		+GTFReg
+.contacts-wrapper
+	display: flex
+	justify-content: space-between
+	margin-top: 14vh
+	h3
+		margin-top: 30px
+		line-height: 1em
+
+.contacts-line
+	width: 0%
+	height: 1px
+	background: white
+
+.contacts--left, .contacts--right
+	width: 40%
+
+.contacts
+	.stroke-a
+		width: fit-content
+	a
+		display: block
+		text-transform: uppercase
+		font-size: 1.4vw
+		margin-top: 44px
+		width: fit-content
+		opacity: 0
+		transform: translateY(20px)

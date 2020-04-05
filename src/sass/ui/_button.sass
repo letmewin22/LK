@@ -1,0 +1,60 @@
+button
+	outline: none
+	-moz-appearance: none
+	-webkit-appearance: none
+
+
+.button
+	border-radius: 50%
+	background: white
+	+medium
+	text-transform: uppercase
+	color: $main-color
+	&.header-button
+		width: 25.6vw
+		height: 25.6vw
+		position: absolute
+		bottom: 3.4vw
+		right: 9.3vw
+		opacity: 0
+		transform: rotate(30deg)
+		font-size: 3vw
+	.button-rewealer
+		width: 101%
+		height: 101%
+		position: absolute
+		background: #9c27b0
+		top: 50%
+		left: 50%
+		display: flex
+		justify-content: center
+		align-items: center
+		color: white
+		border-radius: 50%
+	.button-text
+		.word
+			display: inline-block
+			.char
+				display: inline-block
+				transform: translateY(30px)
+				opacity: 0
+	&.footer-button
+		width: 17vw
+		height: 17vw
+		transform: rotate(-10deg)
+		font-size: 1.6vw
+.stroke-a
+	position: relative
+	svg
+		position: absolute
+		top: 50%
+		left: 50%
+		pointer-events: none
+		display: block
+		transform: translate(-50%, -50%)  
+		path
+			transition: stroke-dashoffset 1s cubic-bezier(0.455, 0.03, 0.515, 0.955)
+			&.stroked
+				stroke-dashoffset: 0px !important
+	a
+		position: relative

@@ -1,0 +1,19 @@
+<div class="repeated-text">
+  <div class="repeated-text--top">
+    {% for text in repeatedTextTop %}
+    <div class="repeated-content stroked">{{text}}</div>
+    {% endfor %}
+    {% for text in repeatedTextTop %}
+    <div class="repeated-content stroked">{{text}}</div>
+    {% endfor %}
+  </div>
+  <hr />
+  <div class="repeated-text--bottom">
+    {% for text in repeatedTextBottom %}
+    <div class="repeated-content">{{text}}</div>
+    {% endfor %}
+    {% for text in repeatedTextBottom %}
+    <div class="repeated-content">{{text}}</div>
+    {% endfor %}
+  </div>
+</div>
