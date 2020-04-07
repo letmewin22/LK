@@ -26,8 +26,7 @@ export const navLinksDetect = () => {
 
     link.classList.remove('active')
 
-    if (link.href === location.href) {
+    if (link.href === location.href)
       link.classList.add('active')
-    }
   }
 }

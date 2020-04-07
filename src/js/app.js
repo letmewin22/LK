@@ -3,9 +3,11 @@ import Highway from '@dogstudio/highway'
 import './lib/smoothscroll'
 
 import LinkStroke from './LinksStroke'
-import ScrollAnimations from './scroll/ScrollAnimations.js'
+import ScrollAnimations from './scroll/ScrollAnimations'
 import Button from './ui/Button'
 import Nav from './ui/Nav'
+import FormSubmit from './form/FormSubmit'
+import FormWindows from './form/formWindows/FormWindows'
 
 import {navLinksDetect} from './helpers.js'
 
@@ -20,7 +22,8 @@ import SimpleTransition from './transitions/SimpleTransition'
 window.addEventListener('load', () => {
 
   navLinksDetect()
-  
+  new FormSubmit()
+  new FormWindows()
   new ScrollAnimations()
 
   new Button(document.querySelectorAll('.button'))
@@ -50,6 +53,8 @@ H.on('NAVIGATE_IN', () => {
 })
 
 H.on('NAVIGATE_END', () => {
+  new FormSubmit()
+  new FormWindows()
   LinkStroke.strokeSvgEvents()
   new ScrollAnimations()
 

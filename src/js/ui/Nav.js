@@ -25,26 +25,34 @@ export default class Nav {
   open() {
 
     this.openAnim()
-    this.logo.style.color = 'black'
 
-    for (let line of this.burgerLines) {
-      line.style.background = 'black'
-    }
+    setTimeout(() => {
+      this.logo.style.color = 'black'
 
-    this.burger.classList.add('active')
+      for (let line of this.burgerLines) {
+        line.style.background = 'black'
+      }
+
+      this.burger.classList.add('active')
+    }, 200)
+
 
   }
 
   close() {
 
     this.closeAnim()
-    this.logo.style.color = 'white'
 
-    for (let line of this.burgerLines) {
-      line.style.background = 'white'
-    }
+    setTimeout(() => {
+      this.logo.style.color = 'white'
 
-    this.burger.classList.remove('active')
+      for (let line of this.burgerLines) {
+        line.style.background = 'white'
+      }
+
+      this.burger.classList.remove('active')
+    }, 1000)
+
   }
 
   openAnim() {
