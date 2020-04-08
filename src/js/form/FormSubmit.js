@@ -1,8 +1,9 @@
-import { TimelineMax, Power1} from 'gsap'
+import { TimelineMax, Power1 } from 'gsap'
 
-import FormInputs from './FormInputs.js'
-import serialize from './formSend.js'
-import pseudoPrototype from './pseudo.prototype.js'
+import FormInputs from './FormInputs'
+import FormWindows from './formWindows/FormWindows'
+import serialize from './formSend'
+import pseudoPrototype from './pseudo.prototype'
 
 export default class FormSubmit extends FormInputs {
 
@@ -11,32 +12,33 @@ export default class FormSubmit extends FormInputs {
     pseudoPrototype()
 
     this.thankYouWindow = document.querySelector('.thank-you-window')
-    this.thankYouWindowText = this.thankYouWindow.querySelector('span')
-    
+    this.thankYouWindowText = this.thankYouWindow.querySelector('h2')
+
     this.form.onsubmit = (e) => this.submit(e)
 
   }
 
   requestLoad() {
 
-    let tl = new TimelineMax()
+    const formClose = new FormWindows()
+    setTimeout(() => formClose.closeForm(), 2500)
+
+    const tl = new TimelineMax()
     tl
-      .to(this.thankYouWindow, 1, { opacity: 1, ease: Power1.easeInOut })
-      .to(this.thankYouWindowText, 1, { opacity: 1, y: 0, ease: Power1.easeInOut }, 0.1)
-      .to(this.thankYouWindowText, 1, { opacity: 0, y: 40, ease: Power1.easeInOut, 
-        onComlete: () => {
-          // formClose.closeEvent()
-        }}, 4)
-      .to(this.thankYouWindow, 1, { opacity: 0, ease: Power1.easeInOut }, 4.5)
-      
+      .to(this.thankYouWindow, 0.5, { opacity: 1, ease: Expo.easeInOut })
+      .to(this.thankYouWindowText, 1.5, { opacity: 1, y: 0, ease: Expo.easeInOut }, 0.1)
+      .to(this.thankYouWindowText, 1.5, { opacity: 0, y: '5vh', ease: Expo.easeInOut}, 3)
+      .to(this.thankYouWindow, 0.5, { opacity: 0, ease: Expo.easeInOut }, 4)
+
+
 
     this.form.reset()
     document.body.classList.remove('form-focused')
     for (let input of this.input) {
       input.classList.remove('focus')
+      input.value = ''
     }
 
-    // dataLayer.push({ 'event': 'otpravka_form' })
   }
 
 
@@ -54,8 +56,8 @@ export default class FormSubmit extends FormInputs {
         }
       })
         .then(response => response.status >= 200 && response.status < 400 ?
-          this.requestLoad() : alert('При отправке произошла ошибка:('))
-      // this.requestLoad() : this.requestLoad())
+          // this.requestLoad() : alert('При отправке произошла ошибка:('))
+          this.requestLoad() : this.requestLoad())
 
     } catch (e) {
       console.log(e)
@@ -68,7 +70,7 @@ export default class FormSubmit extends FormInputs {
 
     e.preventDefault()
     this.requestSend()
-    
+
     return false
   }
 }

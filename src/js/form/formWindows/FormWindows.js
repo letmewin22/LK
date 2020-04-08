@@ -1,5 +1,6 @@
 import pseudoPrototype from '../pseudo.prototype.js'
 import Validator from './Validator.js'
+import FormAnimations from './FormAnimations.js'
 
 export default class FormWindows {
 
@@ -17,71 +18,87 @@ export default class FormWindows {
 
     this.counterHTML = document.querySelector('.form-counter .current')
     this.inputs = document.querySelectorAll('.text-field')
+    this.inputWrapper = document.querySelectorAll('.input-wrapper')
 
     this.count = 1
-    this.koef = 1
 
-    this.screens()
     this.events()
 
   }
 
   events() {
-    
+
     this.formNextBtns.forEach(elem => elem.addEventListener('click', (e) => { e.preventDefault() }))
-    this.formOpenBtns.forEach(elem => elem.addEventListener('click', () => this.openForm()))
+    this.formOpenBtns.forEach(elem => elem.addEventListener('click', this.openForm.bind(this, elem)))
     this.formCloseBtn.addEventListener('click', () => this.closeForm())
 
     this.inputs.forEach(elem => elem.addEventListener('input', () => Validator.validation.call(this, elem)))
     this.formNextBtns.forEach(elem => elem.addEventListener('click', this.counter.bind(this, event)))
   }
 
-  openForm() {
+  openForm(elem) {
 
-    this.form.classList.add('opened')
+    setTimeout(() => this.screens(), 400)
+
+    FormAnimations.open(this.form, elem)
+
     document.body.style.overflow = 'hidden'
+    this.form.classList.add('opened')
   }
 
   closeForm() {
 
+    FormAnimations.close(this, this.screens.bind(this, 0))
+
     this.form.classList.remove('opened')
     document.body.style.overflow = 'initial'
+
+    this.count = 1
+    this.counterHTML.innerHTML = this.count
   }
 
   screens(cur = 0) {
 
     for (let i = 0; i < this.formScreens.length; i++) {
-      this.formScreens[i].style.opacity = 0
-      this.formScreens[i].style.pointerEvents = 'none'
 
-      this.formScreens[0 + cur].style.opacity = 1
-      this.formScreens[0 + cur].style.pointerEvents = 'auto'
+      this.formScreens[i].classList.remove('active')
+      this.formScreens[0 + cur].classList.add('active')
+
+      FormAnimations.screens(this.formScreens[i], this.formScreens[0 + cur])
+
     }
   }
 
-  counter(e) {
+  counter() {
 
-    e.preventDefault()
+    const input = this.inputs[this.count - 1]
+    const koef = +input.nextElementSibling.querySelector('.form-validate-text').getAttribute('data-value')
 
-    Validator.validation(this.inputs[this.count - 1])
+    Validator.validation(input)
 
-    this.inputs[this.count - 1].value.trim('').length >= this.koef &&
-      this.inputs[this.count - 1].getAttribute('id') !== 'email' ?
+    input.value.trim('').length >= koef &&
+      input.getAttribute('id') !== 'email' ?
       this.counterEvent() :
-      Validator.emailValidation(this.inputs[this.count - 1].value.trim('')) === true ?
+      Validator.emailValidation(input.value.trim('')) === true ?
         this.counterEvent() : null
   }
 
   counterEvent() {
+
     this.count++
 
     if (this.count >= 3) {
       this.count = 3
     }
+    const callback = () => {
+      this.counterHTML.innerHTML = this.count
+    }
 
-    this.counterHTML.innerHTML = this.count
+    FormAnimations.counter(this.counterHTML, callback)
 
     this.screens(this.count - 1)
+
+
   }
 
 

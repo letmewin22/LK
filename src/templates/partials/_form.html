@@ -1,6 +1,6 @@
 <div class="pop-up-form">
     <button class="close-form">Close</button>
-    <div class="form-counter"><span class="current">1</span>/3</div>
+    <div class="form-counter"><span class="count"><span class="current">1</span>/3</span></div>
     <div class="form-wrapper">
       <form data-url="./mail.php" class="form" name="form">
         <!-- Hidden Required Fields -->
@@ -13,10 +13,10 @@
             <span class="sec-line">My <span class="stroke">name</span> is</span>
           </h2>
           <div class="input-wrapper first">
-            <input type="text" class="text-field" maxlength="256" name="Имя" id="name" autocomplete="off">
+            <input type="text" class="text-field" maxlength="256" name="Имя" id="name">
             <label for="name" class="label">
               <span class="label-content">Enter your name</span>
-              <span data-value="2" class="form-validate-text">the field cannot be empty</span>
+              <span data-value="3" class="form-validate-text">name must be at least 3 characters</span>
             </label>
             <button class="form-btn next">next</button>
           </div>
@@ -26,10 +26,10 @@
             <span class="sec-line">adress</span>
           </h2>
           <div class="input-wrapper">
-            <input type="text" class="text-field" maxlength="256" name="E-mail" id="email" autocomplete="off">
+            <input type="text" class="text-field" maxlength="256" name="E-mail" id="email">
             <label for="email" class="label">
               <span class="label-content">Enter your E-mail</span>
-              <span data-value="2" class="form-validate-text">invalid e-mail value</span>
+              <span data-value="1" class="form-validate-text">invalid e-mail value</span>
             </label>
             <button class="form-btn next">next</button>
           </div>
@@ -39,16 +39,16 @@
             the <span class="stroke">project</span>
           </h2>
           <div class="input-wrapper">
-            <input type="text" class="text-field" maxlength="512" name="Детали" id="details" autocomplete="off">
+            <input type="text" class="text-field" maxlength="512" name="Детали" id="details">
             <label for="details" class="label">
               <span class="label-content">Project details</span>
-              <span data-value="2" class="form-validate-text">the field cannot be empty</span>
+              <span data-value="1" class="form-validate-text"></span>
             </label>
             <button type="submit" class="form-btn send">send</button>
           </div>
         </div>
         <div class="thank-you-window screen-wrapper" style="z-index: 16">
-          <h2 class="form-h2"> <span class="first-line">Thank you, your</span> message has been <span class="stroke">sent</span><span><img src="img/emoji.png" alt="emoji"></span>
+          <h2 class="form-h2"> <span class="first-line">Thank you, your</span> message has been <span class="stroke">sent</span> <span class="emoji">{% include "partials/_emoji.html" %}</span>
           </h2>
         </div>
       </form>

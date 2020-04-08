@@ -55,6 +55,7 @@
   </div>
 </div>
   <div class="cursor">View</div>
+  <div class="page-rewealer"></div>
   <div class="site-wrapper" data-router-wrapper>
     <div data-router-view="about">
       <!-- BEGIN content -->
@@ -201,6 +202,7 @@
           <span class="button-text">Send me a <br>message
           </span>
         </span>
+        <span class="form-bg"></span>
       </button>
     </div>
     <div class="footer-right">
@@ -280,7 +282,7 @@
   </div>
   <div class="pop-up-form">
     <button class="close-form">Close</button>
-    <div class="form-counter"><span class="current">1</span>/3</div>
+    <div class="form-counter"><span class="count"><span class="current">1</span>/3</span></div>
     <div class="form-wrapper">
       <form data-url="./mail.php" class="form" name="form">
         <!-- Hidden Required Fields -->
@@ -293,10 +295,10 @@
             <span class="sec-line">My <span class="stroke">name</span> is</span>
           </h2>
           <div class="input-wrapper first">
-            <input type="text" class="text-field" maxlength="256" name="Имя" id="name" autocomplete="off">
+            <input type="text" class="text-field" maxlength="256" name="Имя" id="name">
             <label for="name" class="label">
               <span class="label-content">Enter your name</span>
-              <span data-value="2" class="form-validate-text">the field cannot be empty</span>
+              <span data-value="3" class="form-validate-text">name must be at least 3 characters</span>
             </label>
             <button class="form-btn next">next</button>
           </div>
@@ -306,10 +308,10 @@
             <span class="sec-line">adress</span>
           </h2>
           <div class="input-wrapper">
-            <input type="text" class="text-field" maxlength="256" name="E-mail" id="email" autocomplete="off">
+            <input type="text" class="text-field" maxlength="256" name="E-mail" id="email">
             <label for="email" class="label">
               <span class="label-content">Enter your E-mail</span>
-              <span data-value="2" class="form-validate-text">invalid e-mail value</span>
+              <span data-value="1" class="form-validate-text">invalid e-mail value</span>
             </label>
             <button class="form-btn next">next</button>
           </div>
@@ -319,16 +321,24 @@
             the <span class="stroke">project</span>
           </h2>
           <div class="input-wrapper">
-            <input type="text" class="text-field" maxlength="512" name="Детали" id="details" autocomplete="off">
+            <input type="text" class="text-field" maxlength="512" name="Детали" id="details">
             <label for="details" class="label">
               <span class="label-content">Project details</span>
-              <span data-value="2" class="form-validate-text">the field cannot be empty</span>
+              <span data-value="1" class="form-validate-text"></span>
             </label>
             <button type="submit" class="form-btn send">send</button>
           </div>
         </div>
         <div class="thank-you-window screen-wrapper" style="z-index: 16">
-          <h2 class="form-h2"> <span class="first-line">Thank you, your</span> message has been <span class="stroke">sent</span><span><img src="img/emoji.png" alt="emoji"></span>
+          <h2 class="form-h2"> <span class="first-line">Thank you, your</span> message has been <span class="stroke">sent</span> <span class="emoji"><svg width="89" height="89" viewBox="0 0 89 89" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M38 0C42.3 0 46.7 0 51 0C60 2.5 68.5 5.8 75.4 12.5C82.7 19.6 86.5 28.4 89 38C89 42.3 89 46.7 89 51C86.6 60 83.2 68.5 76.5 75.4C69.4 82.7 60.6 86.5 51 89C46.7 89 42.3 89 38 89C28.8 86.5 20.2 83 13.2 76.1C6.1 69.1 2.5 60.4 0 51C0 46.7 0 42.3 0 38C2.4 29 5.8 20.5 12.5 13.6C19.6 6.3 28.4 2.5 38 0ZM44.7 86.9C68 86.8 86.9 67.7 86.9 44.5C86.9 21.2 67.9 2.2 44.6 2.2C21.1 2.1 1.9 21.3 2.1 44.8C2.3 68.1 21.4 87 44.7 86.9Z" fill="black"/>
+<path d="M33 65.0002C38.3 64.7002 43.6 64.7002 48.7 64.0002C53.7 63.3002 58.6 61.8002 63.4 60.7002C62.8 66.8002 55.7 72.4002 47.4 73.0002C39.3 73.6002 34.3 71.0002 33 65.0002Z" fill="black"/>
+<path d="M30.1004 37.0005C34.1004 37.1005 37.2004 40.3005 37.1004 44.4005C37.0004 48.4005 33.7004 51.7005 29.9004 51.7005C25.8004 51.7005 22.3004 48.0005 22.5004 43.9005C22.7004 39.9005 26.0004 36.9005 30.1004 37.0005Z" fill="black"/>
+<path d="M50.7002 49.6004C52.7002 43.9004 55.7002 41.1004 60.6002 40.6004C65.2002 40.1004 69.0002 43.1004 71.6002 49.6004C64.5002 45.5004 58.0002 45.6004 50.7002 49.6004Z" fill="black"/>
+<path d="M34.0997 24.1999C30.7997 24.5999 27.3997 24.4999 24.1997 25.3999C20.8997 26.2999 17.8997 27.9999 14.6997 29.3999C14.2997 23.9999 24.6997 20.3999 33.6997 22.4999C33.8997 22.9999 33.9997 23.5999 34.0997 24.1999Z" fill="black"/>
+<path d="M74.7004 37.2005C68.1004 35.4005 61.8004 33.6005 55.4004 31.9005C55.2004 31.6005 55.1004 31.4005 54.9004 31.1005C56.9004 30.7005 58.9004 30.0005 60.9004 30.1005C67.7004 30.3005 73.3004 33.3005 74.7004 37.2005Z" fill="black"/>
+</svg>
+</span>
           </h2>
         </div>
       </form>

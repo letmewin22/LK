@@ -15,8 +15,9 @@ import CustomRendererMain from './pageRenders/CustomRenderMain'
 import CustomRendererAbout from './pageRenders/CustomRenderAbout'
 import CustomRendererProjects from './pageRenders/CustomRenderProjects'
 import CustomRendererContacts from './pageRenders/CustomRenderContacts'
-// import Transition from './Transition'
+
 import SimpleTransition from './transitions/SimpleTransition'
+import CircleTransition from './transitions/CircleTransition'
 
 
 window.addEventListener('load', () => {
@@ -44,7 +45,7 @@ const H = new Highway.Core({
     contacts: CustomRendererContacts
   },
   transitions: {
-    default: SimpleTransition
+    default: CircleTransition
   }
 })
 
