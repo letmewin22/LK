@@ -8,8 +8,9 @@ import Button from './ui/Button'
 import Nav from './ui/Nav'
 import FormSubmit from './form/FormSubmit'
 import FormWindows from './form/formWindows/FormWindows'
+import Cases from './cases/Cases'
 
-import {navLinksDetect} from './helpers.js'
+import { navLinksDetect } from './helpers.js'
 
 import CustomRendererMain from './pageRenders/CustomRenderMain'
 import CustomRendererAbout from './pageRenders/CustomRenderAbout'
@@ -26,6 +27,7 @@ window.addEventListener('load', () => {
   new FormSubmit()
   new FormWindows()
   new ScrollAnimations()
+  new Cases()
 
   new Button(document.querySelectorAll('.button'))
 
@@ -37,6 +39,7 @@ window.addEventListener('load', () => {
 })
 
 
+
 const H = new Highway.Core({
   renderers: {
     main: CustomRendererMain,
@@ -45,7 +48,7 @@ const H = new Highway.Core({
     contacts: CustomRendererContacts
   },
   transitions: {
-    default: CircleTransition
+    default: SimpleTransition
   }
 })
 
@@ -58,8 +61,8 @@ H.on('NAVIGATE_END', () => {
   new FormWindows()
   LinkStroke.strokeSvgEvents()
   new ScrollAnimations()
+  new Cases()
 
   new Button(document.querySelectorAll('.button'))
 
 })
-

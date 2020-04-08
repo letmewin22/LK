@@ -187,3 +187,111 @@ body
 	width: 0vw
 	height: 0vw
 	border-radius: 50%
+
+.video-pop-up
+	position: fixed
+	top: 0
+	left: 0
+	z-index: 101
+	background: #f1f1f1
+	width: 100vw
+	height: 100vh
+	display: flex
+	justify-content: center
+	align-items: center
+	video
+		max-height: 80vh
+		pointer-events: none
+
+.video-player
+	width: fit-content
+	height: fit-content
+	display: flex
+	justify-content: center
+	align-items: center
+	position: relative
+	&.full-screen
+		width: 100vw
+		height: 100vh
+		z-index: 1000
+	&__play-button
+		position: absolute
+		top: 50%
+		left: 50%
+		transform: translate(-50%, -50%)
+		background: #f1f1f1
+		width: 120px
+		height: 120px
+		border-radius: 50%
+		transition: opacity .3s ease
+		img
+			display: block
+			position: absolute
+			top: 50%
+			left: 50%
+			transform: translate(-50%, -50%)
+			width: 43px
+		&.playing
+			opacity: 0
+			&:hover
+				opacity: 1
+	&__small-play-button
+		cursor: pointer
+		height: 25px
+		width: 20px
+		img
+			height: 100%
+	&__controls
+		position: absolute
+		bottom: 20px
+		transform: translateX(-50%)
+		left: 50%
+		padding-left: 40px
+		padding-right: 40px
+		display: flex
+		justify-content: space-between 
+		width: 100%
+		align-items: center
+		opacity: 0
+		&.active
+			opacity: 1
+	&__progress-bar-container
+		background: rgba(255, 255, 255, 0.7)
+		width: 80%
+		height: 4px
+		// overflow: hidden
+		cursor: pointer
+		position: relative
+	&__progress-bar
+		height: 100%
+		background: $accent-color
+		width: 0px
+		position: absolute
+		top: 50%
+		transform: translateY(-50%)
+		z-index: 1
+	&__full-screen
+		width: 25px
+		height: 25px 
+		cursor: pointer
+		img
+			pointer-events: none
+	&__time
+		font-size: 16px
+		width: 46px
+		color: white
+		margin-right: 20px
+		+GTFReg
+	&__controls-left
+		display: flex
+		align-items: center
+
+
+.close-pop-up
+  position: absolute
+  z-index: 17
+  right: 3%
+  top: 3.5%
+  font-size: 1.6vw
+  text-transform: uppercase
+  background: transparent

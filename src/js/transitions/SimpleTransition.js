@@ -8,7 +8,7 @@ export default class SimpleTransition extends Highway.Transition {
     document.body.style.pointerEvents = 'none'
     document.body.style.overflow = 'hidden'
     tl
-      .to(from, 0.4, { opacity: 0, y: '-20vh', ease: Power3.easeInOut })
+      .to(from, 0.6, { opacity: 0, ease: Power3.easeInOut })
 
   }
 
@@ -22,7 +22,7 @@ export default class SimpleTransition extends Highway.Transition {
       }
     })
     tl
-      .fromTo(to, 0.4, { opacity: 0, y: '20vh' }, { opacity: 1, y: '0vh', ease: Power3.easeInOut })
+      .fromTo(to, 0.6, { opacity: 0 }, { opacity: 1, ease: Power3.easeInOut })
 
   }
 };
