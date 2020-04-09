@@ -6,8 +6,8 @@ html input[type="range"] {
   max-width: 100%;
   display: block;
   position: absolute;
-  z-index: 2;
-  cursor: pointer
+  z-index: 3;
+  cursor: pointer;
 }
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
   html input[type="range"] {
@@ -24,11 +24,11 @@ html input[type="range"] {
     -webkit-appearance: none;
     height: 15px;
     transform: translateY(-5px); 
-    background: $accent-color;
+    background: #fff;
     border-radius: 50%;
     position: relative;
   }
   html input[type="range"]:active::-webkit-slider-thumb {
-    background: #fff;
+    background: $accent-color;
   }
 }

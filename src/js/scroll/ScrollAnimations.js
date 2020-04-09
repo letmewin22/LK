@@ -10,9 +10,11 @@ class ScrollAnimations extends ScrollInView {
 
     this.sections = document.querySelectorAll('.section')
     this.footer = document.querySelectorAll('footer')
+    this.cases = document.querySelectorAll('.case')
 
     new ScrollInView(this.sections, this.sectionAnimation)
     new ScrollInView(this.footer, this.footerAnimation)
+    new ScrollInView(this.cases, this.casesAnimation)
   }
 
   sectionAnimation(elem) {
@@ -21,12 +23,18 @@ class ScrollAnimations extends ScrollInView {
       .to(elem.querySelectorAll('.heading-line'), 1, { width: '100%', ease: Power1.easeInOut }, 0)
       .to(elem.querySelectorAll('h2'), 0.8, { opacity: 1, y: 0, ease: Power1.easeOut }, 0.5)
       .to(elem.querySelectorAll('.about-text'), 0.8, { opacity: 1, ease: Power1.easeOut }, 0.4)
-      .staggerTo(elem.querySelectorAll('h4'), 0.8, { opacity: 1, y: 0, ease: Power1.easeOut }, 0.5, 0.1)
       .staggerTo(elem.querySelectorAll('.award__line'), 1.3, { width: '100%', ease: Power2.easeOut }, 0.2, 0.5)
       .staggerTo(elem.querySelectorAll('.award__content .animating'), 0.6, { y: '0%', opacity: 1, ease: Power2.easeOut }, 0.1, 0.5)
 
     ScrollAnimations.aboutTextLines(elem)
 
+  }
+
+  casesAnimation(elem) {
+    const tl = new TimelineMax()
+    tl
+      .to(elem.querySelectorAll('h4'), 0.8, { opacity: 1, y: 0, ease: Power1.easeOut }, 0.1)
+      .to(elem.querySelectorAll('.case-num'), 0.8, { opacity: 0.7, y: 0, ease: Power1.easeOut }, 0.1)
   }
 
   footerAnimation(elem) {

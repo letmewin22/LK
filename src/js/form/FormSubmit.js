@@ -1,7 +1,6 @@
-import { TimelineMax, Power1 } from 'gsap'
-
 import FormInputs from './FormInputs'
 import FormWindows from './formWindows/FormWindows'
+import FormAnimations from './formWindows/FormAnimations'
 import serialize from './formSend'
 import pseudoPrototype from './pseudo.prototype'
 
@@ -23,12 +22,7 @@ export default class FormSubmit extends FormInputs {
     const formClose = new FormWindows()
     setTimeout(() => formClose.closeForm(), 2500)
 
-    const tl = new TimelineMax()
-    tl
-      .to(this.thankYouWindow, 0.5, { opacity: 1, ease: Expo.easeInOut })
-      .to(this.thankYouWindowText, 1.5, { opacity: 1, y: 0, ease: Expo.easeInOut }, 0.1)
-      .to(this.thankYouWindowText, 1.5, { opacity: 0, y: '5vh', ease: Expo.easeInOut}, 3)
-      .to(this.thankYouWindow, 0.5, { opacity: 0, ease: Expo.easeInOut }, 4)
+    FormAnimations.thankYou(this.thankYouWindow, this.thankYouWindowText)
 
 
 

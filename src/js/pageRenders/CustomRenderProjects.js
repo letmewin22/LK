@@ -29,23 +29,25 @@ class CustomRendererProjects extends Highway.Renderer {
     if (screen.width > 1024) {
       const app = new Distort({ images: [...document.querySelectorAll('.js-webgl-image')] })
 
+      imagesLoaded('.cases', () => {
 
-      app.init()
+        app.init()
 
-      const updateValues = ({ size, scroll }) => {
-        if (size.changed) {
-          app.engine.resize()
-          app.setElementsBounds()
-          app.setElementsStyle()
-          app.setElementsPosition()
+        const updateValues = ({ size, scroll }) => {
+          if (size.changed) {
+            app.engine.resize()
+            app.setElementsBounds()
+            app.setElementsStyle()
+            app.setElementsPosition()
+          }
+
+          if (scroll.changed) {
+            app.animateFisheye({ value: scroll.velocity.y })
+            app.setElementsPosition()
+          }
         }
-
-        if (scroll.changed) {
-          app.animateFisheye({ value: scroll.velocity.y })
-          app.setElementsPosition()
-        }
-      }
-      tornis.watchViewport(updateValues)
+        tornis.watchViewport(updateValues)
+      })
     }
 
   }

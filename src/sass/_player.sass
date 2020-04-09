@@ -1,0 +1,244 @@
+.svg-icon__sprite
+	pointer-events: none
+	display: none
+
+.pop-up-bg
+	position: fixed
+	width: 150px
+	height: 150px
+	background: #fff
+	transform: translate(-50%, -50%)
+	border-radius: 50%
+	opacity: 0
+	z-index: 101
+
+.case-info
+	display: flex
+	justify-content: space-between
+	align-items: center
+	color: $main-color
+	margin-top: 33px
+	.case-name
+		+GTFBold
+		font-size: 28px
+		transform: translateY(5vh)
+		opacity: 0
+	.case-link
+		font-size: 20px
+		transition: color .3s ease
+		transform: translateY(5vh)
+		opacity: 0
+		&::after
+			content: ''
+			display: block
+			width: 100%
+			height: 1px
+			background: $main-color
+			transition: background .3s ease
+		&:hover
+			color: $accent-color
+			&::after
+				background: $accent-color
+
+.video-pop-up
+	position: fixed
+	top: 0
+	left: 0
+	z-index: 102
+	// background: #f1f1f1
+	width: 100vw
+	height: 100vh
+	display: flex
+	flex-direction: column
+	justify-content: center
+	align-items: center
+	opacity: 0
+	video
+		pointer-events: none
+		width: 100%
+		height: 100%
+	.video-player
+		transform: translateY(5vh)
+		opacity: 0
+
+
+.video-player
+	height: fit-content
+	display: flex
+	justify-content: center
+	align-items: center
+	position: relative
+	width: 55vw
+	&.full-screen
+		width: 100vw
+		height: 100vh
+		z-index: 10000
+		position: fixed
+		top: 0
+		left: 0
+	&__overlay
+		position: absolute
+		top: 0
+		left: 0
+		width: 100%
+		height: 100%
+	&__play-button
+		position: absolute
+		top: 50%
+		left: 50%
+		transform: translate(-50%, -50%)
+		background: #f1f1f1
+		width: 142px
+		height: 142px
+		border-radius: 50%
+		transition: opacity .3s ease, background .3s ease, color .3s ease
+		font-size: 20px
+		+GTFBold
+		display: flex
+		justify-content: center
+		align-items: center
+		text-transform: uppercase
+		&.playing
+			opacity: 0
+			&:hover
+				opacity: 1
+		&:hover
+			background: $accent-color
+			color: white
+	&__small-play-button
+		cursor: pointer
+		height: 16px
+		position: relative
+		width: 20px
+		svg
+			height: 100%
+			width: 100%
+			display: none
+			position: absolute
+			top: 50%
+			left: 50%
+			transform: translate(-50%, -50%)
+			fill: white
+			transition: fill .2s ease
+			&.active
+				display: block
+		&:hover
+			svg
+				fill: $accent-color
+	&__controls
+		position: absolute
+		bottom: 0px
+		padding-bottom: 20px
+		transform: translateX(-50%)
+		left: 50%
+		padding-left: 4.9%
+		padding-right: 4.9%
+		width: 100%
+		opacity: 0
+		&.active
+			opacity: 1
+	&__controls-top
+		display: flex
+		justify-content: space-between 
+		margin-bottom: 20px
+		width: 100%
+		align-items: center
+
+	&__progress-bar-container
+		background: rgba(255, 255, 255, 0.7)
+		width: 100%
+		height: 4px
+		// overflow: hidden
+		cursor: pointer
+		position: relative
+	&__progress-bar
+		height: 100%
+		background: $accent-color
+		width: 0px
+		position: absolute
+		top: 50%
+		transform: translateY(-50%)
+		z-index: 2
+	&__buffer-bar
+		height: 100%
+		background: rgba($accent-color, 0.5)
+		width: 0px
+		position: absolute
+		top: 50%
+		transform: translateY(-50%)
+		z-index: 1
+	&__full-screen
+		width: 18px
+		height: 18px 
+		cursor: pointer
+		margin-left: 41px
+		svg
+			pointer-events: none
+			height: 100%
+			fill: white
+			transition: fill .2s ease
+		&:hover
+			svg
+				fill: $accent-color
+	&__time
+		font-size: 14px
+		color: white
+		line-height: 1em
+		margin-left: 41px
+		+GTFReg
+		display: flex
+		align-items: center
+	&__controls-left
+		display: flex
+		align-items: center
+	&__controls-right
+		display: flex
+		align-items: baseline 
+	&__sound
+		cursor: pointer
+		position: relative
+		display: flex
+		justify-content: center
+		align-items: center
+		svg
+			fill: white
+			transition: fill .2s ease
+			height: 20px
+			&:hover
+				fill: $accent-color
+		&:hover
+			.video-player__sound-progress-wrapper
+				width: 66px
+				overflow: initial
+
+	&__sound-progress-wrapper
+		background: rgba(255, 255, 255, 0.7)
+		height: 4px
+		width: 0px
+		overflow: hidden
+		cursor: pointer
+		position: relative 
+		margin-left: 10px
+		transition: width .3s ease
+	&__sound-bar
+		height: 100%
+		background: $accent-color
+		width: 0px
+		position: absolute
+		top: 50%
+		transform: translateY(-50%)
+		z-index: 2
+
+@media (max-width: 460px)
+	.video-player
+		width: 85.6vw
+		&__play-button
+			width: 60px
+			height: 60px
+			font-size: 12px
+		&__controls
+			padding-bottom: 8px
+		&__controls-top
+			margin-bottom: 10px
+		&__time
+			margin-left: 11px

@@ -1,9 +1,10 @@
 import { TimelineMax, Power3 } from 'gsap'
 import Highway from '@dogstudio/highway'
 
+
 export default class CircleTransition extends Highway.Transition {
   // Built-in methods
-  out({ from, done }) {
+  out({ done }) {
 
     document.body.style.pointerEvents = 'none'
     document.body.style.overflow = 'hidden'
@@ -16,7 +17,7 @@ export default class CircleTransition extends Highway.Transition {
 
   }
 
-  in({ from, to, done }) {
+  in({ from, done }) {
 
     from.remove()
 
