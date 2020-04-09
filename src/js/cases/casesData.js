@@ -3,7 +3,7 @@ export const data = {
     name: 'Bulbakh',
     link: 'https://bulbakh.com/',
     video: '1.mp4',
-    poster: '2.jpg'
+    poster: '1.jpg'
   },
   '2': {
     name: 'emotiON',
@@ -15,6 +15,12 @@ export const data = {
     name: 'Bali',
     link: 'https://www.daytripbali.cc/',
     video: '2.mp4',
-    poster: '2.jpg'
+    poster: '3.jpg'
+  },
+  '4': {
+    name: 'Bali',
+    link: 'https://www.daytripbali.cc/',
+    video: '2.mp4',
+    poster: '3.jpg'
   }
 }

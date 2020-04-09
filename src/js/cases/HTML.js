@@ -4,13 +4,10 @@ import { data } from './casesData'
 export default class HTML {
 
   static caseData() {
-    return Object.values(data).map(el => {
-      return el
-    })
+    return Object.values(data)
   }
 
   static markup(num) {
-
     return `<div class="video-pop-up ${num}">
   <button class="close-pop-up">Close</button>
   ${PlayerHTML.markup(num, this.caseData()[num].video, this.caseData()[num].poster)}

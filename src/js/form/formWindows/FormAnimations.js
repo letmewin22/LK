@@ -9,6 +9,7 @@ export default class FormAnimations {
     tl
       .to(elem.querySelector('.form-bg'), 1.1, { width: size, height: size, left: 0, ease: Power3.easeInOut })
       .to(elem.querySelector('.form-bg'), 1.1, { backgroundColor: '#f1f1f1', ease: Power1.easeInOut }, 0)
+      .to(elem.querySelector('.form-bg'), 0.01, { position: 'fixed' }, 0)
       .to(elem, 0.01, { zIndex: 1000, ease: Power1.easeInOut }, 0)
       .to(form, 0.5, { display: 'flex', opacity: 1, ease: Power1.easeOut }, 0.8)
   }
@@ -24,6 +25,7 @@ export default class FormAnimations {
       .to(document.querySelectorAll('.form-bg'), 1.1, { backgroundColor: '#9c27b0', ease: Expo.easeOut }, 0.8)
       .to(elems.form, 0.1, { display: 'none', ease: Power1.easeOut }, 1.8)
       .to(document.querySelectorAll('.form-handler'), 0.01, { zIndex: 'auto', ease: Power1.easeInOut })
+      .to(document.querySelectorAll('.form-bg'), 0.01, { position: 'absolute', ease: Power1.easeInOut })
   }
 
   static screens(allElems, curElem) {

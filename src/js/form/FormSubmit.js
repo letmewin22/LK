@@ -54,7 +54,7 @@ export default class FormSubmit extends FormInputs {
           this.requestLoad() : this.requestLoad())
 
     } catch (e) {
-      console.log(e)
+      console.log(e.message)
     }
   }
 

@@ -19,12 +19,12 @@ repeatedTextBottom:
   <div class="container header-container">
     <div class="header-container__my-photo"></div>
     <h1>
-      <span class="h1-decor h1-line"><a href="./">Leonid Kostetckyi</a></span>
+      <span class="h1-decor h1-line"><a href="./about">Leonid Kostetckyi</a></span>
       <span class="website h1-line">Website</span>
       <span class="development h1-line">development</span>
       <span class="for-business h1-line">for business</span>
     </h1>
-    <button class="button header-button form-handler">Contact me 
+    <button class="button header-button form-handler">Contact me
       <span class="button-rewealer" style="transform: translate(-50%, -50%) scale(0)">
         <span class="button-text">Contact me</span>
       </span>
@@ -35,7 +35,6 @@ repeatedTextBottom:
           facebook
         </a>
         {% include "partials/_stroke.html" %}
-
       </div>
       <div class="stroke-a social-link"> <a class="stroke-link" data-width="30" data-height="10" href="./">
           instagram
@@ -63,7 +62,12 @@ repeatedTextBottom:
             <img class="js-webgl-image cursor-active" src="img/cases/bulbakh.jpg" alt="case">
             <div class="case-text">
               <span class="case-num">01</span>
-              <h4>bulbakh</h4>
+              <div class="stroke-a">
+                <h4 class="stroke-link" data-width="60" data-height="25">
+                  bulbakh
+                </h4>
+                {% include "partials/_stroke.html" %}
+              </div>
             </div>
           </div>
         </div>
@@ -72,7 +76,12 @@ repeatedTextBottom:
             <img class="js-webgl-image cursor-active" src="img/cases/tek.jpg" alt="case">
             <div class="case-text">
               <span class="case-num">02</span>
-              <h4>tek</h4>
+              <div class="stroke-a">
+                <h4 class="stroke-link" data-width="60" data-height="25">
+                  tek
+                </h4>
+                {% include "partials/_stroke.html" %}
+              </div>
             </div>
           </div>
           <div class="cases__wrap">
@@ -80,14 +89,24 @@ repeatedTextBottom:
               <img class="js-webgl-image cursor-active" src="img/cases/bali.jpg" alt="case">
               <div class="case-text">
                 <span class="case-num">03</span>
-                <h4>bali</h4>
+                <div class="stroke-a">
+                  <h4 class="stroke-link" data-width="60" data-height="25">
+                    bali
+                  </h4>
+                  {% include "partials/_stroke.html" %}
+                </div>
               </div>
             </div>
             <div class="case case--fourth">
               <img class="js-webgl-image cursor-active" src="img/cases/iqos.jpg" alt="case">
               <div class="case-text">
                 <span class="case-num">04</span>
-                <h4>iqos</h4>
+                <div class="stroke-a">
+                  <h4 class="stroke-link" data-width="60" data-height="25">
+                    iqos
+                  </h4>
+                  {% include "partials/_stroke.html" %}
+                </div>
               </div>
             </div>
           </div>

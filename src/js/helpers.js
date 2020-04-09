@@ -30,3 +30,19 @@ export const navLinksDetect = () => {
       link.classList.add('active')
   }
 }
+
+export const timeFormat = (ms) => {
+
+  let hr = Math.floor(ms / 3600),
+    min = Math.floor((ms - (hr * 3600)) / 60),
+    sec = Math.floor(ms - (hr * 3600) - (min * 60))
+
+  if (min < 10) {
+    min = '0' + min
+  }
+  if (sec < 10) {
+    sec = '0' + sec
+  }
+  return min + ':' + sec
+}
+

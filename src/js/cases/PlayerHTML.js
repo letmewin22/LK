@@ -5,7 +5,7 @@ export default class PlayerHTML {
   <video poster="./img/posters/${poster}" style="margin: 0 auto; opacity:1; display:block; max-width: 100%">
     <source src="./video/${video}" type="video/mp4"></video>
   <button class="video-player__play-button">PLAY</button>
-  <div class="lds-ripple">
+  <div class="video-player__loader">
     <div></div>
     <div></div>
   </div>
@@ -35,7 +35,7 @@ export default class PlayerHTML {
         <div class="video-player__time"><span class="cur-time">00:00</span>&nbsp;/&nbsp;<span class="all-time">00:00</span></div>
       </div>
       <div class="video-player__controls-right">
-        <div class="video-player__sound">
+        <div class="video-player__sound draggable='false'">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <use class="use" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#i-maxvolume"></use>
           </svg>
@@ -52,7 +52,7 @@ export default class PlayerHTML {
       </div>
     </div>
     <div class="video-player__progress-bar-container">
-      <input type="range" class="duration" value="0" min="0">
+      <input type="range" class="duration" step="0.025" value="0" min="0">
       <div class="video-player__progress-bar"></div>
       <div class="video-player__buffer-bar"></div>
     </div>

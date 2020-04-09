@@ -27,29 +27,38 @@ export default class Cases {
 
           const ca = new CasesAnimations
           ca.openAnimation()
+          document.body.style.overflow = 'hidden'
         }
       })
 
+      const player = new Player()
+
       this.wrapper.querySelector('.close-pop-up').addEventListener('click', () => {
+        player.pause()
 
         const callback = () => {
           this.wrapper.innerHTML = ''
           history.pushState(null, null, window.location.pathname)
+          document.body.style.overflow = 'initial'
         }
         const ca = new CasesAnimations
         ca.closeAnimation(callback)
       })
 
-      new Player()
+
 
       const casesInfo = document.querySelector('.case-info')
       const videoPlayer = document.querySelector('.video-player')
 
       casesInfo.style.width = videoPlayer.getBoundingClientRect().width + 'px'
 
-      window.addEventListener('resize', () => {
+      const updateSize = () => {
         casesInfo.style.width = videoPlayer.getBoundingClientRect().width + 'px'
-      })
+        window.requestAnimationFrame(updateSize)
+      }
+
+      updateSize()
+
 
     }
   }
@@ -60,7 +69,6 @@ export default class Cases {
 
       elem.addEventListener('click', () => {
 
-        history.pushState(null, null, window.location.pathname)
         insertParam('video', index + 1)
 
         this.currentLink()

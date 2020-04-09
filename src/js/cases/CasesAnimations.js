@@ -1,4 +1,4 @@
-import { TimelineMax } from 'gsap'
+import { TimelineMax, Power1, Power3, Expo } from 'gsap'
 
 export default class CasesAnimations {
 
@@ -6,6 +6,7 @@ export default class CasesAnimations {
 
     this.popUpBg = document.querySelector('.pop-up-bg')
     this.cursor = document.querySelector('.cursor')
+    this.closePopUp = document.querySelector('.pop-up-wrapper .close-pop-up')
     this.cursorPos = this.cursor.getBoundingClientRect()
 
     this.caseName = document.querySelector('.case-name')
@@ -38,6 +39,7 @@ export default class CasesAnimations {
       .to(this.videoPlayer, 1, { opacity: 0, y: '-5vh', ease: Expo.easeOut }, 0.1)
       .to(this.caseName, 1, { opacity: 0, y: '-5vh', ease: Expo.easeOut }, 0.3)
       .to(this.caseLink, 1, { opacity: 0, y: '-5vh', ease: Expo.easeOut }, 0.35)
+      .to(this.closePopUp, 0.5, { opacity: 0, ease: Expo.easeOut }, 0.35)
       .to(this.popUpBg, 1.3, { width: '0vw', height: '0vw', ease: Expo.easeOut }, 0.6)
       .to(this.popUpBg, 1.1, { backgroundColor: 'white', ease: Expo.easeOut }, 0.6)
   }

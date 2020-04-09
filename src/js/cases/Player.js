@@ -1,3 +1,5 @@
+import { timeFormat } from '../helpers.js'
+
 export default class Player {
 
   constructor() {
@@ -19,38 +21,80 @@ export default class Player {
     this.fullScreenBtn = document.querySelector('.video-player__full-screen')
     this.timeCur = document.querySelector('.cur-time')
     this.timeAll = document.querySelector('.all-time')
-    this.loader = document.querySelector('.lds-ripple')
+    this.loader = document.querySelector('.video-player__loader')
 
     this.video.controls = false
-
-    this.events()
-
-  }
-
-  events() {
+    this.state = null
 
     this.playBtn.addEventListener('click', this.playingEvents.bind(this))
     this.playSmallBtn.addEventListener('click', this.playingEvents.bind(this))
     this.videoOverlay.addEventListener('click', this.playingEvents.bind(this))
 
-    this.video.addEventListener('loadedmetadata', () => {
-      this.progressRange.setAttribute('max', Math.round(this.video.duration))
+    window.addEventListener('keyup', (e) => {
+      if (e.code === 'Space') {
+        this.playingEvents()
+      }
+    })
 
-      this.timeCur.innerHTML = this.timeFormat(Math.round(this.video.currentTime))
-      this.timeAll.innerHTML = this.timeFormat(Math.round(this.video.duration))
+    if (screen.width > 460) {
+      this.events()
+    }
+  }
+
+  events() {
+
+    this.video.addEventListener('loadedmetadata', () => {
+      this.progressRange.setAttribute('max', this.video.duration)
+
+      this.timeCur.innerHTML = timeFormat(this.video.currentTime)
+      this.timeAll.innerHTML = timeFormat(this.video.duration)
+
+      this.controlVolumeStatus(+JSON.stringify(localStorage.getItem('volume') / 10) || 0.5)
+
     })
 
     this.fullScreenBtn.addEventListener('click', this.fullScreen.bind(this))
+    this.videoOverlay.addEventListener('dblclick', this.fullScreen.bind(this))
 
     this.currentProgress()
 
-    this.progressRange.addEventListener('change', () => {
-      this.pause()
+
+    
+    const timeUpdate = () => {
       this.video.currentTime = +this.progressRange.value
+      this.video.pause()
+    }
+
+
+    this.progressRange.addEventListener('mousedown', () => {
+      
+      this.progressRange.addEventListener('mousemove', timeUpdate)
+    })
+
+    this.progressRange.addEventListener('mouseup', () => {
+      timeUpdate()
+      this.progressRange.removeEventListener('mousemove', timeUpdate)
       this.play()
     })
 
-    this.video.addEventListener('timeupdate', this.currentProgress.bind(this))
+    this.progressRange.addEventListener('click', () => {
+
+      const w = this.progressRange.offsetWidth
+      const o = event.offsetX
+
+      this.video.currentTime = this.video.duration * (o / w)
+
+    })
+
+
+    const updateTime = () => {
+      this.currentProgress()
+      window.requestAnimationFrame(updateTime)
+    }
+
+    updateTime()
+
+    // this.video.addEventListener('timeupdate', this.currentProgress.bind(this))
 
 
     this.video.addEventListener('waiting', () => {
@@ -120,12 +164,11 @@ export default class Player {
 
   currentProgress() {
 
-
     this.progressRange.value = this.video.currentTime
-    this.progressRange.setAttribute('value', Math.round(this.video.currentTime))
+    this.progressRange.setAttribute('value', this.video.currentTime)
 
-    this.timeCur.innerHTML = this.timeFormat(Math.round(this.video.currentTime))
-    this.timeAll.innerHTML = this.timeFormat(Math.round(this.video.duration))
+    this.timeCur.innerHTML = timeFormat(Math.round(this.video.currentTime))
+    this.timeAll.innerHTML = timeFormat(Math.round(this.video.duration))
 
     const persent = +this.progressRange.getAttribute('value') / +this.progressRange.getAttribute('max') * 100
 
@@ -194,21 +237,6 @@ export default class Player {
 
   }
 
-  timeFormat(ms) {
-
-    let hr = Math.floor(ms / 3600),
-      min = Math.floor((ms - (hr * 3600)) / 60),
-      sec = Math.floor(ms - (hr * 3600) - (min * 60))
-
-    if (min < 10) {
-      min = '0' + min
-    }
-    if (sec < 10) {
-      sec = '0' + sec
-    }
-    return min + ':' + sec
-  }
-
   buffered() {
 
     let duration = this.video.duration
@@ -224,23 +252,30 @@ export default class Player {
   }
 
   soundToogle() {
+    if (+this.soundRange.value === 0 && this.state !== null) {
 
-    if (+this.soundRange.value === 0) {
+      this.controlVolumeStatus(this.state / 10)
+      this.soundRange.value = this.state
+
+    } else if (+this.soundRange.value === 0 && this.state === null) {
 
       this.controlVolumeStatus(0.5)
       this.soundRange.value = 5
-
     } else {
 
+      this.state = +this.soundRange.value
       this.controlVolumeStatus(0)
       this.soundRange.value = 0
-
     }
+
   }
 
   controlVolumeStatus(val) {
 
     this.video.volume = val
+
+    localStorage.setItem('volume', val * 10)
+
     this.soundRange.setAttribute('value', val * 10)
 
     const persent = +this.soundRange.getAttribute('value') / +this.soundRange.getAttribute('max') * 100
