@@ -19,11 +19,11 @@ export default class CasesAnimations {
   }
 
   openAnimation() {
-
+    const size = window.innerWidth > window.innerHeight ? '240vw' : '240vh'
     const tl = new TimelineMax()
 
     tl
-      .to(this.popUpBg, 1.3, { width: '240vw', height: '240vw', ease: Power3.easeInOut })
+      .to(this.popUpBg, 1.3, { width: size, height: size, ease: Power3.easeInOut })
       .to(this.popUpBg, 1.1, { backgroundColor: '#f1f1f1', ease: Power1.easeInOut }, 0)
       .to(document.querySelector('.video-pop-up'), 0.1, { opacity: 1, ease: Power3.easeInOut }, 0.7)
       .to(this.videoPlayer, 1.4, { opacity: 1, y: 0, ease: Expo.easeOut }, 0.7)

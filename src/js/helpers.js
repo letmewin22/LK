@@ -43,6 +43,9 @@ export const timeFormat = (ms) => {
   if (sec < 10) {
     sec = '0' + sec
   }
+  if (hr > 0) {
+    return hr + ':' + min + ':' + sec
+  } 
   return min + ':' + sec
 }
 

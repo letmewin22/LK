@@ -1,6 +1,7 @@
 import { insertParam, getQueryParams } from './links'
 import HTML from './HTML'
-import Player from './Player'
+import Player from './Player/Player'
+
 import CasesAnimations from './CasesAnimations'
 
 export default class Cases {
@@ -35,6 +36,7 @@ export default class Cases {
 
       this.wrapper.querySelector('.close-pop-up').addEventListener('click', () => {
         player.pause()
+        player.removeSpaceEvent()
 
         const callback = () => {
           this.wrapper.innerHTML = ''

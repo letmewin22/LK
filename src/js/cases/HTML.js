@@ -1,4 +1,4 @@
-import PlayerHTML from './PlayerHTML'
+import PlayerHTML from './Player/PlayerHTML'
 import { data } from './casesData'
 
 export default class HTML {
@@ -8,7 +8,7 @@ export default class HTML {
   }
 
   static markup(num) {
-    return `<div class="video-pop-up ${num}">
+    return `<div class="video-pop-up">
   <button class="close-pop-up">Close</button>
   ${PlayerHTML.markup(num, this.caseData()[num].video, this.caseData()[num].poster)}
   <div class="case-info">

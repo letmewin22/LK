@@ -8,27 +8,31 @@ html input[type="range"] {
   position: absolute;
   z-index: 3;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
   html input[type="range"] {
     height: 100%;
     -webkit-appearance: none;
     background-color: transparent;
   }
+
   html input[type="range"]::-webkit-slider-runnable-track {
     height: 100%;
     -webkit-appearance: none;
   }
+
   html input[type="range"]::-webkit-slider-thumb {
-    width: 15px;
+    width: 14px;
     -webkit-appearance: none;
-    height: 15px;
-    transform: translateY(-5px); 
+    height: 14px;
     background: #fff;
     border-radius: 50%;
     position: relative;
-  }
-  html input[type="range"]:active::-webkit-slider-thumb {
-    background: $accent-color;
+    display: block;
   }
 }
