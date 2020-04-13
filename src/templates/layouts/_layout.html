@@ -1,6 +1,7 @@
 {% include "../partials/_media-tags.html" %}
 
 <body>
+  {% include "partials/_loader.html" %}
 	{% include "partials/_navbar.html" %}
   <div class="cursor">View</div>
   <div class="page-rewealer"></div>
@@ -12,9 +13,11 @@
     </div>
   </div>
   {% include "partials/_form.html" %}
+  <noscript><div class="js-enable">Please enable JavaScript to view this website.</div></noscript>
   <!-- BEGIN scripts -->
   <script src="js/app.js"></script>
   <!-- END scripts -->
+
 </body>
 
 </html>

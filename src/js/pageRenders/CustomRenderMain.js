@@ -1,8 +1,6 @@
 import Highway from '@dogstudio/highway'
 import imagesLoaded from 'imagesloaded'
 
-import * as tornis from '../lib/tornis'
-
 import defaultLoader from '../loaders/defaultLoader'
 import mainLoader from '../loaders/mainLoader.js'
 import MousemoveParallax from '../ui/MousemoveParallax'
@@ -30,7 +28,7 @@ class CustomRendererMain extends Highway.Renderer {
       defaultLoader(mainLoader)
     })
 
-    if (document.body.style.opacity === '1') {
+    if (document.querySelector('.page-loader').style.opacity === '0') {
       mainLoader()
       document.body.style.position = 'static'
     }
@@ -45,29 +43,9 @@ class CustomRendererMain extends Highway.Renderer {
       effect: 100
     })
 
-    if (screen.width > 1024) {
-      const app = new Distort({ images: [...document.querySelectorAll('.js-webgl-image')] })
+    const app = new Distort([...document.querySelectorAll('.js-webgl-image')])
 
-      imagesLoaded('.cases', () => {
-
-        app.init()
-
-        const updateValues = ({ size, scroll }) => {
-          if (size.changed) {
-            app.engine.resize()
-            app.setElementsBounds()
-            app.setElementsStyle()
-            app.setElementsPosition()
-          }
-
-          if (scroll.changed) {
-            app.animateFisheye({ value: scroll.velocity.y })
-            app.setElementsPosition()
-          }
-        }
-        tornis.watchViewport(updateValues)
-      })
-    }
+    imagesLoaded('.cases', () => app.init())
 
   }
 }

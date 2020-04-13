@@ -13,21 +13,13 @@ export default class PlayerTooltip {
 
   events() {
 
-    this.progressRange.addEventListener('mousemove', () => {
-      this.addTooltip()
-    })
+    this.progressRange.addEventListener('mousemove', this.addTooltip.bind(this))
 
-    this.progressRange.addEventListener('mouseleave', () => {
-      this.removeTooltip()
-    })
+    this.progressRange.addEventListener('mouseleave', this.removeTooltip.bind(this))
 
-    this.progressRange.addEventListener('touchmove', () => {
-      this.addTooltip()
-    })
+    this.progressRange.addEventListener('touchmove', this.addTooltip.bind(this))
 
-    this.progressRange.addEventListener('touchend', () => {
-      this.removeTooltip()
-    })
+    this.progressRange.addEventListener('touchend', this.removeTooltip.bind(this))
   }
 
   addTooltip() {

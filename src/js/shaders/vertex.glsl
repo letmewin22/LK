@@ -1,19 +1,12 @@
 precision highp float;
 
-     // Attributes
-     attribute vec3 position;
-     attribute vec3 normal;
-     attribute vec2 uv;
-
-     // Uniforms
-     uniform mat4 worldViewProjection;
-
      // Varying
      varying vec2 vUV;
+     uniform float u_distortion;
 
-     void main(void) {
+     void main() {
          vec3 pos = position;
-         gl_Position = worldViewProjection * vec4(pos, 1.0);
+         gl_Position = projectionMatrix * modelViewMatrix * vec4(pos,1.);
 
          vUV = uv;
      }

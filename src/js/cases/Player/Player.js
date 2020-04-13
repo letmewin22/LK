@@ -5,7 +5,7 @@ import PlayerFullscreen from './PlayerFullscreen'
 import PlayerBuffer from './PlayerBuffer'
 import PlayerSound from './PlayerSound'
 import PlayerTooltip from './PlayerTooltip'
-import PlayerPlaybackSpeed from './PlayerPlaybackSpeed'
+import PlayerKeyboardEvents from './PlayerKeyboardEvents'
 
 import PlayerContextMenu from './PlayerContextMenu'
 
@@ -44,11 +44,11 @@ export default class Player {
     window.addEventListener('keyup', this.spaceEvent)
 
     if (screen.width > 460) {
-      this.events()
+      this.render()
     }
   }
 
-  events() {
+  render() {
 
     const playerSound = new PlayerSound(this.video)
 
@@ -71,7 +71,7 @@ export default class Player {
 
     new PlayerContextMenu(this.videoPlayer)
 
-    new PlayerPlaybackSpeed(this.video)
+    new PlayerKeyboardEvents(this.video)
   }
 
   playingEvents() {

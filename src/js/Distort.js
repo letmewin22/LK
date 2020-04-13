@@ -1,5 +1,6 @@
-import * as BABYLON from 'babylonjs'
-import { TweenMax } from 'gsap'
+import * as THREE from 'three'
+import { TimelineMax } from 'gsap'
+import * as tornis from './lib/tornis'
 
 import vertex from './shaders/vertex.glsl'
 import fragment from './shaders/fragment.glsl'
@@ -8,90 +9,105 @@ import fisheyeFragment from './shaders/fisheyeFragment.glsl'
 
 export default class Distort {
 
-  constructor({ images = []} = {}) {
-    this.canvas = null
-    this.engine = null
+  constructor(images = []) {
+
     this.scene = null
     this.camera = null
 
     this.koef = 80
 
     this.images = images
-    this.activeImageIndex = 0
     this.planesImg = new Array(this.images.length)
     this.planesImgBounds = new Array(this.images.length)
 
     this.fisheyePP = null
-    this.fisheyeDistortion = { value: 0 }
-
-    this.debug = false
-
-    
 
   }
 
   init() {
+
     this.setup()
     this.setElementsBounds()
     this.createElements()
     this.setElementsStyle()
-    this.setFisheye()
 
+    tornis.watchViewport(this.updateValues.bind(this))
   }
 
   setup() {
-    this.canvas = document.querySelector('#app')
-    this.engine = new BABYLON.Engine(this.canvas, true, null, true)
-    this.scene = new BABYLON.Scene(this.engine)
-    this.scene.clearColor = new BABYLON.Color4(0, 0, 0, 0.0000000000000001)
-    // Lights
-    // const hemisphericLight = new BABYLON.HemisphericLight('HemisphericLight', new BABYLON.Vector3(1, 1, 0), this.scene)
 
-    // Camera
-    this.camera = new BABYLON.ArcRotateCamera('Camera', -Math.PI / 2, Math.PI / 2, 10, BABYLON.Vector3.Zero(), this.scene)
-    this.camera.mode = BABYLON.Camera.ORTHOGRAPHIC_CAMERA
+    this.scene = new THREE.Scene()
+
+    this.camera = new THREE.OrthographicCamera(
+      window.innerWidth / -2,
+      window.innerWidth / 2,
+      window.innerHeight / 2,
+      window.innerHeight / -2,
+      1,
+      10
+    )
+
+    this.camera.position.z = 1
+
+    this.camera.lookAt(this.scene.position)
+
+    this.renderer = new THREE.WebGLRenderer({
+      antialias: false,
+      alpha: true
+    })
+
+    this.renderer.setSize(window.innerWidth, window.innerHeight)
+    this.renderer.setPixelRatio(window.devicePixelRatio)
+    this.renderer.setClearColor(0xD3D3D3, 0)
+
+    document.querySelector('#app').appendChild(this.renderer.domElement)
 
 
-    this.engine.runRenderLoop(() => this.scene.render())
   }
 
   createElements() {
-    /*
-     * Images
-     */
-    BABYLON.Effect.ShadersStore['imagesVertexShader'] = vertex
-    BABYLON.Effect.ShadersStore['imagesFragmentShader'] = fragment
 
-    const baseMaterial = new BABYLON.ShaderMaterial(
-      'DisplacementMaterial',
-      this.scene, {
-        vertex: 'images',
-        fragment: 'images',
-        attributes: ['position', 'normal', 'uv'],
-        uniforms: ['worldViewProjection']
-      }
-    )
+    this.planeGeo = new THREE.PlaneBufferGeometry(0, 0, 32, 32)
+    this.planeMat = new THREE.ShaderMaterial({
+      uniforms: {
+        uTexture: { type: 't', value: 0 },
+        u_resolution: { type: 'v2', value: new THREE.Vector2(400, 400) },
+        u_distortion: { type: 'f', value: 0 }
+      },
+      vertexShader: vertex,
+      fragmentShader: fragment,
+      transparent: true
+    })
 
-    const baseMesh = new BABYLON.PlaneBuilder.CreatePlane('BaseMesh', {}, this.scene)
-    const numImages = this.images.length
+    this.baseMesh = new THREE.Mesh(this.planeGeo, this.planeMat)
 
-    for (let i = 0; i < numImages; i++) {
+    for (let i = 0; i < this.images.length; i++) {
+
       this.images[i].classList.add('js-webgl-element-hidden')
-      this.planesImg[i] = baseMesh.clone(`Image${i.toString().padStart(3, '0')}`)
-      this.planesImg[i].material = baseMaterial.clone(`Image0${i}Material`)
-      this.planesImg[i].doNotSyncBoundingInfo = true
+      this.planesImg[i] = this.baseMesh.clone()
+      this.planesImg[i].material = this.planeMat.clone()
 
-      const mainTexture = new BABYLON.Texture(this.images[i].src.replace(window.location.href, ''), this.scene, true)
-      this.planesImg[i].material.setTexture('u_mainTexture', mainTexture)
+      this.planesImg[i].material.uniforms.u_resolution = { type: 't', value: new THREE.Vector2(this.planesImgBounds[i].width, this.planesImgBounds[i].height) }
 
+      this.loader = new THREE.TextureLoader()
+
+      this.loader.load(this.images[i].getAttribute('src'), (texture) => {
+        texture.minFilter = THREE.LinearFilter
+        texture.generateMipmaps = false
+        this.planesImg[i].material.uniforms.uTexture = { type: 't', value: texture }
+      })
+
+
+
+      this.scene.add(this.planesImg[i])
     }
 
+    this.animate()
   }
 
   setElementsBounds() {
-    // Images
-    let num = this.images.length
-    for (let i = 0; i < num; i++) {
+
+    for (let i = 0; i < this.images.length; i++) {
       const bounds = this.images[i].getBoundingClientRect()
 
       this.planesImgBounds[i] = {
@@ -105,43 +121,64 @@ export default class Distort {
   }
 
   setElementsStyle() {
-    // Images
-    let num = this.images.length
-    for (let i = 0; i < num; i++) {
-      this.planesImg[i].scaling.x = this.images[i].clientWidth
-      this.planesImg[i].scaling.y = this.images[i].clientHeight
+
+    for (let i = 0; i < this.images.length; i++) {
+      this.planesImg[i].scale.x = this.images[i].clientWidth
+      this.planesImg[i].scale.y = this.images[i].clientHeight
     }
 
   }
 
 
   setElementsPosition() {
-    // Images
-    let num = this.images.length
-    for (let i = 0; i < num; i++) {
-      this.planesImg[i].position.y = -this.planesImgBounds[i].height / 2 + this.canvas.clientHeight / 2 - this.planesImgBounds[i].y + (window.scrollY || window.pageYOffset)
-      this.planesImg[i].position.x = this.planesImgBounds[i].width / 2 - this.canvas.clientWidth / 2 + this.planesImgBounds[i].x
-    }
 
+    for (let i = 0; i < this.images.length; i++) {
+      this.planesImg[i].position.y = -this.planesImgBounds[i].height / 2 + window.innerHeight / 2 - this.planesImgBounds[i].y + (window.scrollY || window.pageYOffset)
+      this.planesImg[i].position.x = this.planesImgBounds[i].width / 2 - window.innerWidth / 2 + this.planesImgBounds[i].x
+    }
   }
 
   animateFisheye({ value }) {
-    TweenMax.to(this.fisheyeDistortion, 0.5, { value: value / this.koef }) 
-  }
 
+    for (let i = 0; i < this.images.length; i++) {
 
-  setFisheye() {
-    BABYLON.Effect.ShadersStore['fisheyeFragmentShader'] = fisheyeFragment
-
-    this.fisheyePP = new BABYLON.PostProcess('fisheye', 'fisheye', ['u_resolution', 'u_distortion'], null, 1, this.camera, 0, this.engine)
-    this.fisheyePP.onApply = effect => {
-      effect.setFloat2('u_resolution', this.fisheyePP.width, this.fisheyePP.height)
+      TweenMax.to(this.planesImg[i].material.uniforms.u_distortion, 0.5, { value: value / this.koef })
     }
 
-    this.fisheyePP.onBeforeRenderObservable.add(effect => effect.setFloat('u_distortion', this.fisheyeDistortion.value))
+
   }
 
-  destroy() {
-    this.engine.dispose()
+  animate() {
+
+    this.animateRAF = () => {
+      requestAnimationFrame(this.animateRAF)
+      this.renderer.render(this.scene, this.camera)
+    }
+    this.animateRAF()
+  }
+
+  resize() {
+
+    window.addEventListener('resize', () => {
+      
+      this.renderer.setSize(window.innerWidth, window.innerHeight)
+      this.renderer.setPixelRatio(window.devicePixelRatio)
+      this.camera.updateProjectionMatrix()
+    })
+  }
+
+  updateValues({ size, scroll }) {
+
+    if (size.changed) {
+      this.resize()
+      this.setElementsBounds()
+      this.setElementsStyle()
+      this.setElementsPosition()
+    }
+
+    if (scroll.changed) {
+      this.animateFisheye({ value: scroll.velocity.y })
+      this.setElementsPosition()
+    }
   }
 }

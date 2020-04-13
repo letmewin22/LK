@@ -2,7 +2,7 @@ export default class PlayerHTML {
   static markup(num, video, poster) {
     return `<div class="video-player" data-id="${num}">
   <div class="video-player__overlay"></div>
-  <video poster="${poster}" style="margin: 0 auto; opacity:1; display:block; max-width: 100%">
+  <video webkit-playsinline playsinline poster="${poster}" style="margin: 0 auto; opacity:1; display:block; max-width: 100%">
     <source src="${video}" type="video/mp4"></video>
   <button class="video-player__play-button">PLAY</button>
   <div class="video-player__loader">
