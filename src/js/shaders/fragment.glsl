@@ -1,24 +1,27 @@
+@import ./bgCover;
 
-precision highp float;
+uniform sampler2D uTexture;
+uniform float uDistortion;
+uniform float uScale;
+uniform float uTime;
+uniform float uState;
+uniform float uShift;
+varying vec2 vUv;
 
-	varying vec2 vUV;
-     
-	uniform sampler2D uTexture;
-	uniform sampler2D textureSampler;
-	uniform vec2 u_resolution;
-	uniform float u_distortion;
+void main() {
 
-	void main() {
-		vec2 position = vUV;
-		vec2 uv = position.xy - vec2(0.5);
-		float uva = atan(uv.x, uv.y);
-		float uvd = sqrt(dot(uv, uv));
-		float k = sin(u_distortion * 4.);
+	float angle = 1.55;
+	vec2 newUv = vUv;
 
-		// uv.y = gl_FragCoord.y * sin(u_distortion / 20.);
+	newUv+= (sin(newUv.y*10. + (uTime / 5.)) / 500.) * (uState + (uDistortion * 8.));
+	newUv+= (sin(newUv.x*10. + (uTime / 15.)) / 500.) * (uState + (uDistortion * 8.));
 
-		uvd *= 1.0 + k*uvd*uvd;
+	vec2 p = (newUv - vec2(0.5, 0.5)) * (1.0 - uScale) + vec2(0.5, 0.5);
+	vec2 offset = uDistortion / 50.0 * vec2(cos(angle), sin(angle));
 
-		gl_FragColor = texture2D(uTexture, vec2(0.5) + vec2(sin(uva), cos(uva))*uvd);
-     
-  }
+	vec4 cr = texture2D(uTexture, p + offset + uShift);
+	vec4 cga = texture2D(uTexture, p);
+	vec4 cb = texture2D(uTexture, p - offset + uShift);
+
+	gl_FragColor = vec4(cr.r, cga.g, cb.b, cga.a);
+}

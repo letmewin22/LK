@@ -1,21 +1,22 @@
 import { TimelineMax, Power1 } from 'gsap'
+import ParallaxScroller from '../ParallaxScroller'
 
 const projectsLoader = () => {
-  const h2 = document.querySelector('h2')
-  const h4 = document.querySelectorAll('h4')
-  const h2Line = document.querySelector('.heading-line')
+  const textLines = screen.width > 460 ? document.querySelectorAll('h1 span') : document.querySelectorAll('h1')
   const cases = [document.querySelector('.cases'), document.querySelector('#app')]
+  const scrollDown = document.querySelector('.scroll-down')
 
   let tl = new TimelineMax({
     onComplete: () => {
+      new ParallaxScroller('.h1-line')
       document.body.style.overflow = 'initial'
     }
   })
   tl
-    .to(h2Line, 1, { width: '100%', ease: Power1.easeInOut }, 0.2)
-    .to(h2, 0.8, { opacity: 1, y: 0, ease: Power1.easeOut }, 0.7)
-    .staggerTo(h4, 0.8, { opacity: 1, y: 0, ease: Power1.easeOut }, 0.5, 0.3)
-    .staggerTo(cases, 0.8, { opacity: 1, ease: Power1.easeOut }, 0.5, 0.3)
+    .staggerTo(textLines, 1.3, { y: 0, ease: Power3.easeOut }, 0.15, 0)
+    .staggerTo(textLines, 1.3, { opacity: 1, ease: Power3.easeOut }, 0.17, 0.1)
+    .to(cases, 0.8, { opacity: 1, ease: Power1.easeOut }, 1)
+    .to(scrollDown, 0.8, { opacity: 1, ease: Power1.easeOut }, 1)
 
 }
 

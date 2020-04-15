@@ -32,16 +32,15 @@ export default class PlayerHTML {
             <path d="m158 0h71c4.417969 0 8 3.582031 8 8v311c0 4.417969-3.582031 8-8 8h-71c-4.417969 0-8-3.582031-8-8v-311c0-4.417969 3.582031-8 8-8zm0 0" />
             <path d="m8 0h71c4.417969 0 8 3.582031 8 8v311c0 4.417969-3.582031 8-8 8h-71c-4.417969 0-8-3.582031-8-8v-311c0-4.417969 3.582031-8 8-8zm0 0" /></svg>
         </div>
-        <div class="video-player__time"><span class="cur-time">00:00</span>&nbsp;/&nbsp;<span class="all-time">00:00</span></div>
+        <div class="video-player__time" draggable='false'><span class="cur-time">00:00</span>&nbsp;/&nbsp;<span class="all-time">00:00</span></div>
       </div>
       <div class="video-player__controls-right">
-        <div class="video-player__sound draggable='false'">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <div class="video-player__sound" draggable='false'>
+          <svg draggable='false' width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <use class="use" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#i-maxvolume"></use>
           </svg>
           <div class="video-player__sound-progress-wrapper">
-            <input type="range" class="sound-range" value="10" min="0" max="10">
-            <div class="video-player__sound-bar"></div>
+            <div class="video-player__sound-bar" value="10" min="0" max="10"></div>
           </div>
         </div>
         <div class="video-player__full-screen">
@@ -51,11 +50,9 @@ export default class PlayerHTML {
         </div>
       </div>
     </div>
-    <div class="video-player__progress-bar-wrapper">
     <div class="video-player__progress-bar-container" draggable='false'>
       <div class="video-player__progress-bar" draggable='false'></div>
       <div class="video-player__buffer-bar"></div>
-    </div>
     </div>
   </div>
 </div>`

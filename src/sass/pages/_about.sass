@@ -23,6 +23,8 @@
   margin-top: 10.1vh
   &__left
     width: 33%
+    img
+      width: 100%
   &__right
     width: 48%
     margin-left: 8.125vw 
@@ -31,13 +33,17 @@
   font-size: 3.07vw
   text-transform: uppercase
   line-height: 1.5em
-  opacity: 0
+  opacity: 1 
   p
     margin-top: 4.6vh
     overflow: hidden
     &:first-child
       margin-top: 0px
-    span
+    .line-wrapper
+      display: inline-block
+      overflow: hidden
+      line-height: 1em
+    .splitted-line
       display: inline-block
       transform: translateY(200%)
       opacity: 0

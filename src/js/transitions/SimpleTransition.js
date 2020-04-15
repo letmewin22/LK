@@ -15,6 +15,7 @@ export default class SimpleTransition extends Highway.Transition {
   in({ from, to, done }) {
     from.remove()
     window.scrollTo(0, 0)
+    document.querySelector('.site-wrapper').scrollTo(0, 0)
     let tl = new TimelineMax({
       onComplete: () => {
         document.body.style.pointerEvents = 'auto'

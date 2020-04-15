@@ -14,6 +14,7 @@ export default class Nav {
 
     this.burger.addEventListener('click', this.events.bind(this))
     this.navItems.forEach(elem => elem.addEventListener('click', this.events.bind(this)))
+    this.logo.addEventListener('click', this.close.bind(this))
 
   }
 
@@ -28,6 +29,7 @@ export default class Nav {
 
     setTimeout(() => {
       this.logo.style.color = 'black'
+      this.logo.querySelectorAll('span').forEach(elem => elem.style.background = 'black')
 
       for (let line of this.burgerLines) {
         line.style.background = 'black'
@@ -45,6 +47,7 @@ export default class Nav {
 
     setTimeout(() => {
       this.logo.style.color = 'white'
+      this.logo.querySelectorAll('span').forEach(elem => elem.style.background = 'white')
 
       for (let line of this.burgerLines) {
         line.style.background = 'white'

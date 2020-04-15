@@ -1,20 +1,29 @@
 <div class="navbar">
   <a href="/" class="logo">
-    L. K.
+    L<span class="dot"><span class="scaling-dot"></span></span> K<span class="dot"></span>
   </a>
   <nav>
     <ul>
-      <li class="stroke-a"> <a class="stroke-link" data-width="50" data-height="10" href="./projects">
+      <li class="stroke-a home"> 
+        <a class="stroke-link" data-width="50" data-height="10" href="./" data-transition="nav">
+          home
+        </a>
+        {% include "partials/_stroke.html" %}
+      </li>
+      <li class="stroke-a"> 
+        <a class="stroke-link" data-width="50" data-height="10" href="./projects" data-transition="nav">
           projects
         </a>
         {% include "partials/_stroke.html" %}
       </li>
-      <li class="stroke-a"> <a class="stroke-link" data-width="50" data-height="10" href="./about">
+      <li class="stroke-a"> 
+        <a class="stroke-link" data-width="50" data-height="10" href="./about" data-transition="nav">
           about
         </a>
         {% include "partials/_stroke.html" %}
       </li>
-      <li class="stroke-a"> <a class="stroke-link" data-width="50" data-height="10" href="./contacts">
+      <li class="stroke-a"> 
+        <a class="stroke-link" data-width="50" data-height="10" href="./contacts" data-transition="nav">
           contacts
         </a>
         {% include "partials/_stroke.html" %}

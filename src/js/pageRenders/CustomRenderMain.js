@@ -28,7 +28,7 @@ class CustomRendererMain extends Highway.Renderer {
       defaultLoader(mainLoader)
     })
 
-    if (document.querySelector('.page-loader').style.opacity === '0') {
+    if (!document.querySelector('.page-loader')) {
       mainLoader()
       document.body.style.position = 'static'
     }
@@ -40,12 +40,15 @@ class CustomRendererMain extends Highway.Renderer {
     new MousemoveParallax({
       img: document.querySelector('.header-container__my-photo'),
       target: document.querySelector('.h1-decor'),
-      effect: 100
+      effect: 100,
+      rotation: false
     })
 
-    const app = new Distort([...document.querySelectorAll('.js-webgl-image')])
+    if (screen.width > 768) {
+      const app = new Distort([...document.querySelectorAll('.js-webgl-image')])
 
-    imagesLoaded('.cases', () => app.init())
+      imagesLoaded('.cases', () => app.init())
+    }
 
   }
 }

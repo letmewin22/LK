@@ -9,6 +9,7 @@ export default class ParallaxScroller {
 
     if (screen.width > 1024) {
       this.looper()
+      this.scroller()
       window.requestAnimationFrame(() => new ParallaxScroller(selector, speedIndex))
     }
 
@@ -27,5 +28,13 @@ export default class ParallaxScroller {
       }
     }
 
+  }
+
+  scroller() {
+    if (document.querySelector('.scroll-down')) {
+      if (this.newPixel > 0) {
+        document.querySelector('.scroll-down__bottom').style.animationDuration = `${20 + (this.newPixel*0.025)}s`
+      }
+    }
   }
 }

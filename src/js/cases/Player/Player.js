@@ -45,6 +45,8 @@ export default class Player {
 
     if (screen.width > 460) {
       this.render()
+    } else {
+      this.video.controls = true
     }
   }
 
@@ -67,7 +69,7 @@ export default class Player {
 
     new PlayerTooltip(this.videoPlayer, this.video, this.progressBarWrapper)
 
-    new PlayerBuffer(this.video, this.loader)
+    this.buffer = new PlayerBuffer(this.video, this.loader)
 
     new PlayerContextMenu(this.videoPlayer)
 
@@ -108,6 +110,10 @@ export default class Player {
 
   removeSpaceEvent() {
     window.removeEventListener('keyup', this.spaceEvent)
+
+    if (screen.width > 460) {
+      this.buffer.destroy()
+    }
   }
 
 }

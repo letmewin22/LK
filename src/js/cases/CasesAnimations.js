@@ -19,7 +19,7 @@ export default class CasesAnimations {
   }
 
   openAnimation() {
-    const size = window.innerWidth > window.innerHeight ? '240vw' : '240vh'
+    const size = window.innerWidth > window.innerHeight ? '240vw' : '260vh'
     const tl = new TimelineMax()
 
     tl

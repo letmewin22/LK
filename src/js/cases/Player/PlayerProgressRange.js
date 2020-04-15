@@ -22,15 +22,18 @@ export default class PlayerProgressRange {
 
 
     const progressUpdate = () => {
-
-      if (event.offsetX || event.targetTouches[0].pageX) {
-
+      if (event.offsetX > -1) {
         const w = this.progressBarWrapper.offsetWidth
-        const o = event.offsetX || event.targetTouches[0].pageX - event.target.getBoundingClientRect().left
+        const o = event.offsetX
 
         this.video.currentTime = this.video.duration * (o / w)
       }
+      if ('ontouchstart' in document.documentElement || window.DocumentTouch && document instanceof DocumentTouch) {
+        const w = this.progressBarWrapper.offsetWidth
+        const o = event.targetTouches[0].pageX - event.target.getBoundingClientRect().left
 
+        this.video.currentTime = this.video.duration * (o / w)
+      }
 
     }
 

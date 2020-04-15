@@ -7,8 +7,7 @@ class MousemoveParallax {
     this.img = options.img || console.error("There isn't img")
     this.target = options.target || console.error("There isn't target")
     this.effect = options.effect || 50
-    this.rotation = options.rotation || true
-
+    this.rotation = options.rotation
     this.target.addEventListener('mouseenter', this.mouseOn.bind(this))
     this.target.addEventListener('mouseleave', this.mouseOut.bind(this))
 

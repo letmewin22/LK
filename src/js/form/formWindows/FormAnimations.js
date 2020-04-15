@@ -4,7 +4,7 @@ export default class FormAnimations {
 
   static open(form, elem) {
 
-    const size = window.innerWidth > window.innerHeight ? window.innerWidth * 2.2 : window.innerHeight * 2.2
+    const size = window.innerWidth > window.innerHeight ? window.innerWidth * 2.2 : window.innerHeight * 2.5
     const tl = new TimelineMax()
     tl
       .to(elem.querySelector('.form-bg'), 1.1, { width: size, height: size, left: 0, ease: Power3.easeInOut })

@@ -2,12 +2,16 @@
 	width: 100%
 	padding-left: 4vw
 	padding-right: 4vw
-	position: absolute
+	position: fixed 
 	z-index: 100
 	top: 52px
 	display: flex
 	justify-content: space-between
 	align-items: center
+	transition: transform .3s ease, opacity .3s ease
+	&.nav-hidden
+		opacity: 0
+		transform: translateY(-20px)
 	.logo
 		+medium
 		color: white
@@ -15,6 +19,35 @@
 		text-decoration: none
 		letter-spacing: 0.1em
 		line-height: 1em
+		position: relative
+		transition: color .3s ease
+		padding-top: 5px
+		padding-bottom: 5px
+		padding-left: 5px
+		padding-right: 5px
+		.dot
+			background: white
+			width: 4px
+			height: 4px
+			display: inline-block
+			border-radius: 50%
+			margin-left: 2px
+			pointer-events: none
+			position: relative
+			transition: background .3s ease
+		.scaling-dot
+			background: white
+			position: absolute
+			top: 50% 
+			left: 50% 
+			width: 4px
+			height: 4px
+			display: block
+			border-radius: 50%
+			transition: transform .4s cubic-bezier(0.68, -0.6, 0.32, 1.6), top .4s cubic-bezier(0.68, -0.6, 0.32, 1.6), left .4s cubic-bezier(0.68, -0.6, 0.32, 1.6)
+			pointer-events: none
+			transform: translate(-50%, -50%)
+
 	nav
 		ul
 			display: flex
@@ -25,3 +58,17 @@
 				font-size: 1.2vw
 				line-height: 1em
 				+avenir 
+.home
+	display: none
+
+@media(min-width: 768px)
+	.logo
+		&:hover
+			color: $main-color
+			.scaling-dot
+				z-index: -1
+				transform: translate(73%, -163%) scale(17) 
+			.hidden-dot
+				opacity: 0
+			.dot
+				background: $main-color

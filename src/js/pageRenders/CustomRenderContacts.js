@@ -13,7 +13,7 @@ class CustomRendererContacts extends Highway.Renderer {
       defaultLoader(contactsLoader)
     })
 
-    if (document.body.style.opacity === '1') {
+    if (!document.querySelector('.page-loader')) {
       contactsLoader()
       document.body.style.position = 'static'
 

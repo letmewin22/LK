@@ -195,7 +195,6 @@
 		display: flex
 		align-items: baseline 
 	&__sound
-		cursor: pointer
 		position: relative
 		display: flex
 		justify-content: center
@@ -204,25 +203,52 @@
 			fill: white
 			transition: fill .2s ease
 			height: 20px
+			cursor: pointer
 			&:hover
 				fill: $accent-color
 
 	&__sound-progress-wrapper
-		background: rgba(255, 255, 255, 0.7)
-		height: 4px
+		height: 20px
 		width: 66px
 		cursor: pointer
 		position: relative 
-		margin-left: 10px
+		margin-left: 20px
 		transition: width .3s ease
+		cursor: pointer
+		&::before
+			content: ''
+			display: block
+			position: absolute
+			height: 4px
+			background: rgba(255, 255, 255, 0.7)
+			width: 100%
+			top: 50%
+			transform: translateY(-50%)
+			z-index: 0
+			pointer-events: none
 	&__sound-bar
-		height: 100%
+		height: 4px
 		background: $accent-color
 		width: 0px
 		position: absolute
 		top: 50%
 		transform: translateY(-50%)
 		z-index: 2
+		display: flex
+		justify-content: center
+		align-items: center
+		pointer-events: none
+		&::after
+			content: ''
+			display: block
+			width: 14px
+			height: 14px
+			background: white
+			border-radius: 50%
+			position: absolute
+			right: 0
+			transform: translateX(50%)
+			pointer-events: none
 	&__progress-tooltip
 		position: absolute
 		background: rgba(black, 0.1)
@@ -245,12 +271,30 @@
 			height: 0px
 			padding: 0px 20px
 
-@media (max-width: 460px)
+@media (max-width: 860px)
 	.video-player
-		width: 85.6vw
+		width: 80vw 
 		&__play-button
 			width: 60px
 			height: 60px
 			font-size: 12px
+@media (max-width: 460px)
+	.video-player
+		width: calc(100vw - 20px)
+		video
+			pointer-events: auto
+		&__time
+			margin-left: 10px
+		&__sound-progress-wrapper
+			display: none
+		&__full-screen
+			margin-left: 20px
+		&__controls-top
+			margin-bottom: 0px
 		&__controls
+			padding: 9px 4.9%
+			display: none 
+		&__overlay
+			display: none
+		&__play-button
 			display: none 

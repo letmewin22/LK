@@ -8,13 +8,14 @@ export default class CircleTransition extends Highway.Transition {
 
     document.body.style.pointerEvents = 'none'
     document.body.style.overflow = 'hidden'
+    const pageRewealer = document.querySelector('.page-rewealer')
+    const size = window.innerWidth > window.innerHeight ? '300vw' : '300vh'
 
     const tl = new TimelineMax({ onComplete: done })
 
     tl
-      .fromTo(document.querySelector('.page-rewealer'), 1.2, { width: '0vw', height: '0vw' }, { width: '200vw', height: '200vw', ease: Power3.easeInOut })
-      .to(document.querySelector('.page-rewealer'), 1.2, {backgroundColor: '#131217', ease: Power3.easeInOut}, 0.3)
-
+      .to(pageRewealer, 1.5, { width: size, height: size, ease: Power3.easeInOut })
+      .to(pageRewealer, 0, { right: 'auto', left: 0, x: '-50%', top: 0, bottom: 'auto', y: '-50%'})
   }
 
   in({ from, done }) {
@@ -22,7 +23,8 @@ export default class CircleTransition extends Highway.Transition {
     from.remove()
 
     window.scrollTo(0, 0)
-
+    document.querySelector('.site-wrapper').scrollTo(0, 0)
+    const pageRewealer = document.querySelector('.page-rewealer')
     const tl = new TimelineMax({
       onComplete: () => {
         document.body.style.pointerEvents = 'auto'
@@ -30,7 +32,8 @@ export default class CircleTransition extends Highway.Transition {
       }
     })
     tl
-      .fromTo(document.querySelector('.page-rewealer'), 0, { width: '200vw', height: '200vw' }, { width: '0vw', height: '0vw', backgroundColor: '#f1f1f1', ease: Power3.easeInOut })
+      .to(pageRewealer, 0, { width: '0vw', height: '0vw'})
+      .to(pageRewealer, 0, { left: 'auto', right: 0, x: '50%', top: 'auto', bottom: 0, y: '50%'})
 
 
   }

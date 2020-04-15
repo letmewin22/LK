@@ -32,13 +32,26 @@ export default class PlayerTooltip {
       el.classList.add('active')
     }
 
-    const tooltip = this.videoPlayer.querySelector('.video-player__progress-tooltip')
-    const w = this.progressRange.offsetWidth
-    const o = event.offsetX || event.targetTouches[0].pageX - event.target.getBoundingClientRect().left
+    const pos = () => {
 
-    tooltip.style.left = (o + tooltip.getBoundingClientRect().width / 2) + 'px'
-    tooltip.style.bottom = 40 + 'px'
-    tooltip.innerHTML = timeFormat(this.video.duration * (o / w))
+      const tooltip = this.videoPlayer.querySelector('.video-player__progress-tooltip')
+      const w = this.progressRange.offsetWidth
+      const o = event.offsetX || event.targetTouches[0].pageX - event.target.getBoundingClientRect().left
+
+      tooltip.style.left = (o + tooltip.getBoundingClientRect().width / 2) + 'px'
+      tooltip.style.bottom = 40 + 'px'
+      tooltip.innerHTML = timeFormat(this.video.duration * (o / w))
+    }
+
+    if (event.offsetX > 0) {
+      pos()
+    }
+
+    if ('ontouchstart' in document.documentElement || window.DocumentTouch && document instanceof DocumentTouch) {
+      pos()
+    }
+
+
   }
 
   removeTooltip() {

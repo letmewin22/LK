@@ -5,19 +5,6 @@ export const TextSplit = (elems, by) => {
     Splitting({ target: elem, by })
 }
 
-export const splitLines = (selector) => {
-
-  const results = Splitting({ target: selector, by: 'lines' })
-
-  const result = () => {
-    return results.map(el => {
-      return el.lines.map(elem => {
-        return elem
-      })
-    })
-  }
-  return result()
-}
 
 export const navLinksDetect = () => {
   const navLinks = document.querySelectorAll('nav a')
@@ -45,7 +32,44 @@ export const timeFormat = (ms) => {
   }
   if (hr > 0) {
     return hr + ':' + min + ':' + sec
-  } 
+  }
   return min + ':' + sec
 }
 
+export const splitLines = (elem) => {
+
+  const getLines = () => {
+    let lines = []
+    let line
+    let p = elem
+    let words = elem.querySelectorAll('.word')
+    let lastTop
+    for (let i = 0; i < words.length; i++) {
+      let word = words[i]
+      if (word.offsetTop !== lastTop) {
+        lastTop = word.offsetTop
+        line = []
+        lines.push(line)
+      }
+      line.push(word)
+    }
+    return lines
+  }
+
+  const showLines = () => {
+    let lines = getLines()
+    return lines.map(function(line) {
+      return line.map(function(span) {
+        return span.innerText
+      }).join(' ')
+    })
+  }
+
+  const showLine = showLines()
+
+  elem.innerHTML = ''
+  for (let i = 0; i < showLine.length; i++) {
+
+    elem.innerHTML += `<span class="line-wrapper"><span class="splitted-line">${showLine[i].toLowerCase()}</span></span>`
+  }
+}

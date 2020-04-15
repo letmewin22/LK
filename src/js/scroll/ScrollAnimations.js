@@ -1,6 +1,5 @@
 import ScrollInView from './ScrollInView.js'
-import { TimelineMax, Power1, Power2, Power3 } from 'gsap'
-import { splitLines } from '../helpers.js'
+import { TimelineMax, Power1, Power2, Power3, Expo } from 'gsap'
 
 class ScrollAnimations extends ScrollInView {
 
@@ -11,10 +10,12 @@ class ScrollAnimations extends ScrollInView {
     this.sections = document.querySelectorAll('.section')
     this.footer = document.querySelectorAll('footer')
     this.cases = document.querySelectorAll('.case')
+    this.aboutText = document.querySelectorAll('.about-text p')
 
-    new ScrollInView(this.sections, this.sectionAnimation)
-    new ScrollInView(this.footer, this.footerAnimation)
-    new ScrollInView(this.cases, this.casesAnimation)
+    new ScrollInView(this.sections, this.sectionAnimation, 0.5)
+    new ScrollInView(this.footer, this.footerAnimation, 0.5)
+    new ScrollInView(this.cases, this.casesAnimation, 0.5)
+    new ScrollInView(this.aboutText, this.aboutAnimation, 0.9)
   }
 
   sectionAnimation(elem) {
@@ -25,8 +26,6 @@ class ScrollAnimations extends ScrollInView {
       .to(elem.querySelectorAll('.about-text'), 0.8, { opacity: 1, ease: Power1.easeOut }, 0.4)
       .staggerTo(elem.querySelectorAll('.award__line'), 1.3, { width: '100%', ease: Power2.easeOut }, 0.2, 0.5)
       .staggerTo(elem.querySelectorAll('.award__content .animating'), 0.6, { y: '0%', opacity: 1, ease: Power2.easeOut }, 0.1, 0.5)
-
-    ScrollAnimations.aboutTextLines(elem)
 
   }
 
@@ -50,20 +49,12 @@ class ScrollAnimations extends ScrollInView {
       .staggerTo([elem.querySelectorAll('.contacts .footer-animate')[3], elem.querySelectorAll('.contacts .footer-animate')[4], elem.querySelectorAll('.contacts .footer-animate')[5]], 0.8, { opacity: 1, y: 0, ease: Power2.easeOut }, 0.3, 0.1)
   }
 
-  static aboutTextLines(elem) {
-
-    const allP = elem.querySelectorAll('.about-text p')
-
-    allP.forEach(p => {
-      let blah = splitLines(p)
-
-      blah.forEach(function(element) {
-        let tl = new TimelineMax()
-        tl
-          .staggerTo(element, 1.3, { y: '0%', ease: Power3.easeOut }, 0.15, 0.4)
-          .staggerTo(element, 1.3, { opacity: 1, ease: Power3.easeOut }, 0.17, 0.5)
-      })
-    })
+  aboutAnimation(elem) {
+    
+    const tl = new TimelineMax()
+    tl
+      .staggerTo(elem.querySelectorAll('.splitted-line'), 1, { y: '0%', ease: Power3.easeOut }, 0.1, 0)
+      .staggerTo(elem.querySelectorAll('.splitted-line'), 1, { opacity: 1, ease: Power3.easeOut }, 0.1, 0.1)
   }
 
 }

@@ -1,0 +1,21 @@
+.scroll-down
+	position: absolute
+	bottom: 10%
+	right: 10%
+	z-index: 10
+	width: 12vw
+	height: 12vw
+	display: flex
+	justify-content: center
+	align-items: center
+	opacity: 0
+	&__bottom
+		animation: scroll-circle-rotate linear infinite
+		animation-duration: 20s
+		transform-origin: 50% 50%
+
+@keyframes scroll-circle-rotate
+	from 
+		transform: rotate(0deg)
+	to
+		transform: rotate(360deg)

@@ -5,7 +5,11 @@ export default class PlayerBuffer {
     this.video = video
     this.loader = loader
 
-    this.video.addEventListener('progress', this.buffered.bind(this))
+    this.bufferEvent = () => {
+      this.buffered()
+    }
+
+    this.video.addEventListener('progress', this.bufferEvent)
 
     this.video.addEventListener('waiting', () => {
       if (this.loader.classList.contains('active') === false) {
@@ -34,5 +38,9 @@ export default class PlayerBuffer {
       }
 
     }
+  }
+
+  destroy() {
+    this.video.removeEventListener('progress', this.bufferEvent)
   }
 }

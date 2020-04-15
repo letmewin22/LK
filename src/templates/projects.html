@@ -4,45 +4,74 @@ route: projects
 ---
 {% extends "layouts/_layout.html" %}
 {% block content %}
-
 <main>
+  <header>
+      <div class="container header-container">
+    <h1 class="project-h1">
+      <span class="project-h1__first-line h1-line">The results of my</span>
+      <span class="h1-line">work as a&nbsp;designer</span>
+      <span class="h1-line">and developer</span>
+    </h1>
+    {% include "partials/_scroll-down.html" %}
+  </div>
+  </header>
   <section class="section indent-top indent-bottom">
     <div class="container heading-container">
       <h2>My Projects</h2>
       <div class="heading-line"></div>
     </div>
     <div class="container section__container">
-      <div class="cases" style="opacity: 0;">
+      <div class="cases">
         <div class="cases--left">
           <div class="case case--second">
-            <img class="js-webgl-image cursor-active" src="img/cases/bali.jpg" alt="case">
+            <img class="js-webgl-image cursor-active" src="img/cases/bulbakh.jpg" alt="case">
             <div class="case-text">
               <span class="case-num">01</span>
-              <h4>bali</h4>
+              <div class="stroke-a">
+                <h4 class="stroke-link" data-width="60" data-height="25">
+                  bulbakh
+                </h4>
+                {% include "partials/_stroke.html" %}
+              </div>
             </div>
           </div>
         </div>
         <div class="cases--right">
           <div class="case case--first">
-            <img class="js-webgl-image cursor-active" src="img/cases/tek.jpg" alt="case">
+            <img class="js-webgl-image cursor-active" src="img/cases/emotion.jpg" alt="case">
             <div class="case-text">
               <span class="case-num">02</span>
-              <h4>tek</h4>
+              <div class="stroke-a">
+                <h4 class="stroke-link" data-width="60" data-height="15">
+                  emotion
+                </h4>
+                {% include "partials/_stroke.html" %}
+              </div>
             </div>
           </div>
           <div class="cases__wrap">
             <div class="case case--third">
-              <img class="js-webgl-image cursor-active" src="img/cases/bulbakh.jpg" alt="case">
+              <img class="js-webgl-image cursor-active" src="img/cases/bali.jpg" alt="case">
               <div class="case-text">
                 <span class="case-num">03</span>
-                <h4>bulbakh</h4>
+                <div class="stroke-a">
+                  <h4 class="stroke-link" data-width="60" data-height="25">
+                    bali
+                  </h4>
+                  {% include "partials/_stroke.html" %}
+                </div>
               </div>
             </div>
             <div class="case case--fourth">
-              <img class="js-webgl-image cursor-active" src="img/cases/iqos.jpg" alt="case">
+              <img class="js-webgl-image cursor-active" src="img/cases/tek.jpg" alt="case">
               <div class="case-text">
                 <span class="case-num">04</span>
-                <h4>iqos</h4>
+                <div class="stroke-a">
+                  <h4 class="stroke-link" data-width="60" data-height="25">
+                    tek
+                  </h4>
+                  {% include "partials/_stroke.html" %}
+                </div>
               </div>
             </div>
           </div>
@@ -52,6 +81,7 @@ route: projects
   </section>
 </main>
 {% include './partials/_footer.html' %}
-<canvas id="app" touch-action="none" style="opacity: 0;"></canvas>
+<div id="app"></div>
 <div class="pop-up-wrapper"></div>
+<div class="pop-up-bg"></div>
 {% endblock %}

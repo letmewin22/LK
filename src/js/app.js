@@ -1,6 +1,9 @@
 import Highway from '@dogstudio/highway'
+import { TimelineMax, Power1, Power2, Power3 } from 'gsap'
 
 import './lib/smoothscroll'
+import './lib/ie-detect.js'
+import './ui/navbarScrolling.js'
 
 import LinkStroke from './LinksStroke'
 import ScrollAnimations from './scroll/ScrollAnimations'
@@ -48,7 +51,11 @@ const H = new Highway.Core({
     contacts: CustomRendererContacts
   },
   transitions: {
-    default: SimpleTransition
+    default: SimpleTransition,
+    contextual: {
+      nav: window.innerWidth > 768 ? CircleTransition : SimpleTransition,
+      circle: CircleTransition
+    }
   }
 })
 
@@ -66,3 +73,13 @@ H.on('NAVIGATE_END', () => {
   new Button(document.querySelectorAll('.button'))
 
 })
+
+window.addEventListener('resize', () => {
+  if (screen.width < 460) {
+    document.querySelector('.site-wrapper').style.height = window.innerHeight + 'px'
+  } else {
+    document.querySelector('.site-wrapper').style.height = 'auto'
+  }
+})
+
+

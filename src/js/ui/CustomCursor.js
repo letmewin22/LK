@@ -27,13 +27,13 @@ export default class CustomCursor {
   hover() {
 
     TweenLite.to(this.cursor, 1, { scale: 1, ease: Elastic.easeOut.config(1, 0.75) })
-    this.hoveredImgs.forEach(elem => elem.addEventListener('mousemove', this.eventFunc))
+    document.body.addEventListener('mousemove', this.eventFunc)
   }
 
   hoverOut() {
 
     TweenLite.to(this.cursor, 0.3, { scale: 0, ease: Power1.easeOut })
-    this.hoveredImgs.forEach(elem => elem.removeEventListener('mousemove', this.eventFunc))
+    document.body.removeEventListener('mousemove', this.eventFunc)
 
   }
 

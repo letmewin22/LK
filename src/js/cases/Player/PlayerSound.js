@@ -5,42 +5,81 @@ export default class PlayerSound {
     this.state = null
 
     this.soundBtn = document.querySelector('.video-player__sound')
-    this.soundRange = document.querySelector('.sound-range')
+    this.soundBarWrapper = document.querySelector('.video-player__sound-progress-wrapper')
     this.soundBar = document.querySelector('.video-player__sound-bar')
 
     this.events()
   }
 
+
+
   events() {
 
+    const soundsUpdate = () => {
+      if (event.offsetX > -1) {
+
+        const w = this.soundBarWrapper.offsetWidth
+        const o = event.offsetX
+
+        this.soundBar.setAttribute('value', 10 * (o / w))
+
+        this.updateVolume()
+      }
+
+      if ('ontouchstart' in document.documentElement || window.DocumentTouch && document instanceof DocumentTouc) {
+
+        const w = this.soundBarWrapper.offsetWidth
+        const o = event.targetTouches[0].pageX - event.target.getBoundingClientRect().left
+        this.soundBar.setAttribute('value', 10 * (o / w))
+
+        this.updateVolume()
+      }
+    }
     this.soundBtn.querySelector('svg').addEventListener('click', this.soundToogle.bind(this))
 
-    this.soundRange.addEventListener('mousedown', () => {
-      this.updateVolume()
-      this.soundRange.addEventListener('mousemove', this.updateVolume.bind(this))
+    this.soundBarWrapper.addEventListener('mousedown', () => {
+      this.soundBarWrapper.addEventListener('mousemove', soundsUpdate)
     })
 
-    this.soundRange.addEventListener('mouseup', () => {
-      this.soundRange.removeEventListener('mousemove', this.updateVolume.bind(this))
+    this.soundBarWrapper.addEventListener('mouseup', () => {
+      this.soundBarWrapper.removeEventListener('mousemove', soundsUpdate)
     })
+
+    this.soundBarWrapper.addEventListener('mouseleave', () => {
+      this.soundBarWrapper.removeEventListener('mousemove', soundsUpdate)
+    })
+
+    this.soundBarWrapper.addEventListener('touchstart', () => {
+      this.soundBarWrapper.addEventListener('touchmove', soundsUpdate)
+    })
+
+    this.soundBarWrapper.addEventListener('touchend', () => {
+      this.soundBarWrapper.removeEventListener('touchmove', soundsUpdate)
+    })
+
+    this.soundBarWrapper.addEventListener('touchcancel', () => {
+      this.soundBarWrapper.removeEventListener('touchmove', soundsUpdate)
+    })
+
+    this.soundBarWrapper.addEventListener('click', soundsUpdate)
   }
 
   soundToogle() {
 
-    if (+this.soundRange.value === 0 && this.state !== null) {
+    if (+this.soundBar.getAttribute('value') === 0 && this.state !== null) {
 
       this.controlVolumeStatus(this.state / 10)
-      this.soundRange.value = this.state
+      this.soundBar.setAttribute('value', this.state)
 
-    } else if (+this.soundRange.value === 0 && this.state === null) {
+    } else if (+this.soundBar.getAttribute('value') === 0 && this.state === null) {
 
       this.controlVolumeStatus(0.5)
-      this.soundRange.value = 5
+      this.soundBar.setAttribute('value', 5)
     } else {
 
-      this.state = +this.soundRange.value
+      this.state = +this.soundBar.getAttribute('value')
       this.controlVolumeStatus(0)
-      this.soundRange.value = 0
+      this.soundBar.setAttribute('value', 0)
     }
 
   }
@@ -51,9 +90,9 @@ export default class PlayerSound {
 
     localStorage.setItem('volume', val * 10)
 
-    this.soundRange.setAttribute('value', val * 10)
+    this.soundBar.setAttribute('value', val * 10)
 
-    const persent = +this.soundRange.getAttribute('value') / +this.soundRange.getAttribute('max') * 100
+    const persent = +this.soundBar.getAttribute('value') / +this.soundBar.getAttribute('max') * 100
 
     this.soundBar.style.width = persent + '%'
 
@@ -68,6 +107,6 @@ export default class PlayerSound {
 
 
   updateVolume() {
-    this.controlVolumeStatus(this.soundRange.value / 10)
+    this.controlVolumeStatus(this.soundBar.getAttribute('value') / 10)
   };
 }
